@@ -54,6 +54,10 @@
     "dist:win:only": "electron-builder --win",
     "dist:win:store": "git pull && npm run && copy electron-builder.win-store.yaml electron-builder.yaml && npm run dist:win && git checkout electron-builder.yaml || git checkout electron-builder.yaml",
     "droid": "npm run buildFrontend:stageWeb:unminified && npx cap sync",
+    "ios:add": "npm run buildFrontend:prodWeb && npx cap add ios",
+    "ios:sync": "npm run buildFrontend:prodWeb && npx cap sync ios",
+    "ios:build": "npm run buildFrontend:prodWeb && npx cap sync ios && npx cap build ios",
+    "ios:open": "npm run ios:sync && npx cap open ios",
     "e2e": "npx playwright test --config e2e/playwright.config.ts --reporter=line",
     "e2e:ui": "npx playwright test --config e2e/playwright.config.ts --ui",
     "e2e:file": "npx playwright test --config e2e/playwright.config.ts --reporter=list",
@@ -131,6 +135,8 @@
     "@ctrl/tinycolor": "4.1.0"
   },
   "dependencies": {
+    "@capacitor/ios": "^7.4.3",
+    "dotenv": "^17.2.3",
     "electron-dl": "^3.5.2",
     "electron-localshortcut": "^3.2.1",
     "electron-log": "^5.4.1",

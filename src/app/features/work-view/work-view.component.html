@@ -11,6 +11,12 @@
       cdkScrollable
     >
       <header class="work-view-header">
+        <!-- Custom Welcome Message -->
+        <div class="custom-welcome-message">
+          <h1>🎯 Welcome to Your Customized Super Productivity!</h1>
+          <p>Time to crush those tasks! 💪</p>
+        </div>
+
         @if (!isPlanningMode() && (estimateRemainingToday() || workingToday())) {
           <div
             @fade
