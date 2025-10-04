@@ -76,6 +76,26 @@
       margin-bottom: 0px;
     }
 
+    // Custom red styling for iOS FAB
+    &.red-fab {
+      background-color: #dc3545 !important; // Bootstrap danger/red
+      --mdc-fab-container-color: #dc3545;
+
+      &:hover {
+        background-color: #c82333 !important; // Darker red on hover
+        --mdc-fab-container-color: #c82333;
+      }
+
+      &:active {
+        background-color: #bd2130 !important; // Even darker red when pressed
+        --mdc-fab-container-color: #bd2130;
+      }
+
+      mat-icon {
+        color: white !important;
+      }
+    }
+
     mat-icon {
       font-size: 28px;
       width: 28px;
