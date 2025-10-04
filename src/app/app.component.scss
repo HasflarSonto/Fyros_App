@@ -14,21 +14,21 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 
-  // Additionally, add some minimum margins for better visual spacing
-  margin-top: max(env(safe-area-inset-top, 0px), 20px);
-  margin-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+  // Additionally, add larger minimum margins for better visual spacing
+  margin-top: max(env(safe-area-inset-top, 0px), 40px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 40px);
 
-  // Adjust height to account for margins
+  // Adjust height to account for larger margins
   height: calc(
-    100vh - max(env(safe-area-inset-top, 0px), 20px) - max(
+    100vh - max(env(safe-area-inset-top, 0px), 40px) - max(
         env(safe-area-inset-bottom, 0px),
-        20px
+        40px
       )
   );
   min-height: calc(
-    100vh - max(env(safe-area-inset-top, 0px), 20px) - max(
+    100vh - max(env(safe-area-inset-top, 0px), 40px) - max(
         env(safe-area-inset-bottom, 0px),
-        20px
+        40px
       )
   );
 }
