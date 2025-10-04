@@ -67,11 +67,24 @@
   right: 0;
   bottom: 0;
   width: 100vw;
-  height: 100vh;
   background: var(--overlay-bg);
   z-index: var(--z-backdrop, 1001);
   display: block;
   opacity: 1;
+
+  // iOS safe area margins to match sidebar
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  margin-top: max(env(safe-area-inset-top, 0px), 40px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 40px);
+
+  // Adjust dimensions to account for margins
+  height: calc(
+    100vh - max(env(safe-area-inset-top, 0px), 40px) - max(
+        env(safe-area-inset-bottom, 0px),
+        40px
+      )
+  );
 }
 
 // Main sidenav
@@ -79,7 +92,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 0;
+  // Bottom will be set with safe area calculations
   width: var(--sidenav-width-expanded);
   background: var(--sidenav-bg);
   border-right: 1px solid var(--sidenav-border-color);
@@ -88,6 +101,23 @@
   z-index: 1002;
   overflow-y: auto;
   overflow-x: hidden;
+
+  // iOS safe area margins to prevent content clash with rounded edges and Dynamic Island/camera
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  // Additionally, add minimum margins for better visual spacing on older devices
+  margin-top: max(env(safe-area-inset-top, 0px), 40px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 40px);
+
+  // Adjust height to account for margins (iOS safe area + minimum margins)
+  height: calc(
+    100vh - max(env(safe-area-inset-top, 0px), 40px) - max(
+        env(safe-area-inset-bottom, 0px),
+        40px
+      )
+  );
+  bottom: auto;
 
   // Slight elevation and clear background for overlay/mobile mode is defined in the mobile block below
 
