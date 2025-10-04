@@ -3,13 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   input,
   OnDestroy,
   output,
   signal,
-  untracked,
 } from '@angular/core';
 import { fadeAnimation } from '../../ui/animations/fade.ani';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
@@ -197,46 +195,48 @@ export class RightPanelComponent implements AfterViewInit, OnDestroy {
   private readonly _shouldSkipAnimation = computed(() => this._skipAnimationDuringNav());
 
   // Effect to handle bottom sheet opening/closing on xs screens
-  private _bottomSheetEffect = effect(() => {
-    const isXs = this._layoutService.isXs();
-    const hasContent = this._hasPanelContent();
+  // DISABLED: Bottom sheet modal behavior that was annoying on iOS
+  // This prevented the automatic bottom modal from appearing when tapping tasks/panels
+  // private _bottomSheetEffect = effect(() => {
+  //   const isXs = this._layoutService.isXs();
+  //   const hasContent = this._hasPanelContent();
 
-    untracked(() => {
-      // Close bottom sheet immediately when switching from xs to non-xs screens
-      if (!isXs && this._bottomSheetRef) {
-        this._bottomSheetRef.dismiss();
-        this._bottomSheetRef = null;
-        return;
-      }
+  //   untracked(() => {
+  //     // Close bottom sheet immediately when switching from xs to non-xs screens
+  //     if (!isXs && this._bottomSheetRef) {
+  //       this._bottomSheetRef.dismiss();
+  //       this._bottomSheetRef = null;
+  //       return;
+  //     }
 
-      // Only handle bottom sheet on xs screens
-      if (isXs) {
-        if (hasContent && !this._bottomSheetRef) {
-          // Open bottom sheet
+  //     // Only handle bottom sheet on xs screens
+  //     if (isXs) {
+  //       if (hasContent && !this._bottomSheetRef) {
+  //         // Open bottom sheet
 
-          this._bottomSheetRef = this._bottomSheet.open(BottomPanelContainerComponent, {
-            hasBackdrop: true,
-            closeOnNavigation: true,
-            panelClass: 'bottom-panel-sheet',
-            // Let CSS handle positioning and height
-          });
+  //         this._bottomSheetRef = this._bottomSheet.open(BottomPanelContainerComponent, {
+  //           //           hasBackdrop: true,
+  //           //           closeOnNavigation: true,
+  //           //           panelClass: 'bottom-panel-sheet',
+  //           //           // Let CSS handle positioning and height
+  //         });
 
-          // Handle bottom sheet dismissal
-          this._bottomSheetSubscription = this._bottomSheetRef
-            .afterDismissed()
-            .subscribe(() => {
-              this._bottomSheetRef = null;
-              this._bottomSheetSubscription = null;
-              this.close();
-            });
-        } else if (!hasContent && this._bottomSheetRef) {
-          // Close bottom sheet
-          this._bottomSheetRef.dismiss();
-          this._bottomSheetRef = null;
-        }
-      }
-    });
-  });
+  //         // Handle bottom sheet dismissal
+  //         //         this._bottomSheetSubscription = this._bottomSheetRef
+  //         //           .afterDismissed()
+  //         //           .subscribe(() => {
+  //         //             this._bottomSheetRef = null;
+  //         //             this._bottomSheetSubscription = null;
+  //         //             this.close();
+  //         //           });
+  //       } else if (!hasContent && this._bottomSheetRef) {
+  //         // Close bottom sheet
+  //         this._bottomSheetRef.dismiss();
+  //         this._bottomSheetRef = null;
+  //       }
+  //     }
+  //   });
+  // });
 
   ngAfterViewInit(): void {
     this._initializeWidth();
