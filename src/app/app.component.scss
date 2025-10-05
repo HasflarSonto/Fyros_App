@@ -8,10 +8,28 @@
 
 .app-container {
   display: flex;
-  height: 100vh;
-  min-height: 100vh;
-  // mobile viewport bug fix
-  min-height: -webkit-fill-available;
+
+  // iOS safe area margins to prevent content clash with rounded edges and camera/Dynamic Island
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  // Additionally, add generous minimum margins for better visual spacing
+  margin-top: max(env(safe-area-inset-top, 0px), 60px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
+
+  // Adjust height to account for margins
+  height: calc(
+    100vh - max(env(safe-area-inset-top, 0px), 60px) - max(
+        env(safe-area-inset-bottom, 0px),
+        60px
+      )
+  );
+  min-height: calc(
+    100vh - max(env(safe-area-inset-top, 0px), 60px) - max(
+        env(safe-area-inset-bottom, 0px),
+        60px
+      )
+  );
 }
 
 .main-content {
