@@ -75,14 +75,14 @@
   // iOS safe area margins to match sidebar
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  margin-top: max(env(safe-area-inset-top, 0px), 40px);
-  margin-bottom: max(env(safe-area-inset-bottom, 0px), 40px);
+  margin-top: max(env(safe-area-inset-top, 0px), 60px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
 
   // Adjust dimensions to account for margins
   height: calc(
-    100vh - max(env(safe-area-inset-top, 0px), 40px) - max(
+    100vh - max(env(safe-area-inset-top, 0px), 60px) - max(
         env(safe-area-inset-bottom, 0px),
-        40px
+        60px
       )
   );
 }
@@ -106,15 +106,15 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 
-  // Additionally, add minimum margins for better visual spacing on older devices
-  margin-top: max(env(safe-area-inset-top, 0px), 40px);
-  margin-bottom: max(env(safe-area-inset-bottom, 0px), 40px);
+  // Additionally, add larger minimum margins for better visual spacing on older devices
+  margin-top: max(env(safe-area-inset-top, 0px), 60px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
 
   // Adjust height to account for margins (iOS safe area + minimum margins)
   height: calc(
-    100vh - max(env(safe-area-inset-top, 0px), 40px) - max(
+    100vh - max(env(safe-area-inset-top, 0px), 60px) - max(
         env(safe-area-inset-bottom, 0px),
-        40px
+        60px
       )
   );
   bottom: auto;
