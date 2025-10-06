@@ -139,7 +139,7 @@ ios/App/App/public/           # ← These files from dist/browser/
 export LANG=en_US.UTF-8 && npx cap sync ios
 
 # 3. Run in simulator
-export ЛANG=en_US.UTF-8 && npx cap run ios
+export LANG=en_US.UTF-8 && npx cap run ios
 
 # 4. Your customizations appear in iOS app!
 ```
@@ -150,6 +150,109 @@ export ЛANG=en_US.UTF-8 && npx cap run ios
 2. **Build**: Run `npm run buildFrontend:prodWeb`
 3. **Sync**: Run `export LANG=en_US.UTF-8 && npx cap sync ios`
 4. **Test**: Launch simulator with `npx cap run ios`
+
+---
+
+## 🏗️ Build Process Explained
+
+### **Why Multiple Commands? Understanding the iOS Build Pipeline**
+
+The iOS build process involves **3 distinct steps** because we're bridging **2 different worlds**:
+
+#### **🌐 Step 1: Web Build (`npm run buildFrontend:prodWeb`)**
+
+```bash
+npm run buildFrontend:prodWeb
+```
+
+**What it does:**
+
+- Compiles your Angular TypeScript → JavaScript
+- Bundles all CSS/SCSS → Optimized CSS
+- Creates production-ready web files in `dist/browser/`
+- **Output**: `dist/browser/index.html`, `main-*.js`, `styles-*.css`
+
+**Why needed:** iOS can't run TypeScript directly - it needs compiled JavaScript!
+
+#### **📱 Step 2: Sync to iOS (`npx cap sync ios`)**
+
+```bash
+npx cap sync ios
+```
+
+**What it does:**
+
+- Copies `dist/browser/` files → `ios/App/App/public/`
+- Updates iOS project configuration
+- Installs/updates iOS dependencies (`pod install`)
+- **Output**: iOS project ready with your web app inside
+
+**Why needed:** Capacitor needs to "inject" your web app into the native iOS project!
+
+#### **🚀 Step 3: Run iOS (`npx cap run ios`)**
+
+```bash
+npx cap run ios
+```
+
+**What it does:**
+
+- Builds the native iOS app (Xcode compilation)
+- Launches iOS Simulator
+- Installs and runs your app
+- **Output**: Running iOS app with your customizations!
+
+**Why needed:** This creates the actual native iOS app that runs on iPhone!
+
+### **🔄 The Complete Pipeline:**
+
+```
+Your Angular Code (TypeScript)
+         ↓
+    npm run buildFrontend:prodWeb
+         ↓
+    Compiled Web App (JavaScript)
+         ↓
+    npx cap sync ios
+         ↓
+    iOS Project + Web App
+         ↓
+    npx cap run ios
+         ↓
+    Native iOS App Running! 📱
+```
+
+### **💡 Why Not One Command?**
+
+Each step serves a **different purpose**:
+
+- **`npm`**: Node.js package manager (handles Angular/web build)
+- **`npx cap`**: Capacitor CLI (handles iOS/native integration)
+- **`pod install`**: CocoaPods (handles iOS dependencies)
+
+**Think of it like building a house:**
+
+1. **`npm`** = Build the furniture (web app)
+2. **`npx cap sync`** = Move furniture into the house (iOS project)
+3. **`npx cap run`** = Turn on the electricity and water (run the app)
+
+### **⚡ Pro Tips:**
+
+**For faster development:**
+
+```bash
+# Quick sync after changes
+npm run ios:sync    # Builds + syncs in one command
+
+# Full build + run
+npm run ios:build   # Builds + syncs + runs in one command
+```
+
+**The `export LANG=en_US.UTF-8` part:**
+
+- Fixes CocoaPods encoding issues on macOS
+- Only needed for iOS commands (not web builds)
+- Prevents "Unicode Normalization" errors
 
 ---
 
@@ -182,8 +285,49 @@ npx cap build ios
 
 - **🎨 Custom Welcome Banner**: Gradient background with emoji
 - **🎭 Enhanced Work View**: Modified `work-view.component.html/scss`
-- **📱 iOS Native Features**: Notifications, file system, background tasks
+- **📱 iOS Safe Area Margins**: Perfect spacing for iPhone rounded corners and Dynamic Island
+- **📐 Consistent Layout**: Main content and sidebar perfectly aligned
 - **🔄 Real-time Sync**: Changes automatically sync from web to iOS
+
+### **✅ iOS Safe Area Implementation:**
+
+The app now includes sophisticated iOS safe area handling:
+
+```scss
+/* Main App Container - src/app/app.component.scss */
+.app-container {
+  // iOS safe area margins to prevent content clash with rounded edges and camera/Dynamic Island
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  // Additionally, add generous minimum margins for better visual spacing
+  margin-top: max(env(safe-area-inset-top, 0px), 50px);
+  margin-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
+
+  // Adjust height to account for margins
+  height: calc(
+    100vh - max(env(safe-area-inset-top, 0px), 50px) - max(
+        env(safe-area-inset-bottom, 0px),
+        60px
+      )
+  );
+  min-height: calc(
+    100vh - max(env(safe-area-inset-top, 0px), 50px) - max(
+        env(safe-area-inset-bottom, 0px),
+        60px
+      )
+  );
+}
+
+/* Sidebar Navigation - src/app/core-ui/magic-side-nav/magic-side-nav.component.scss */
+.nav-list {
+  // iOS safe area margins to move content inward while keeping background
+  padding-left: max(env(safe-area-inset-left, 0px), 20px);
+  padding-right: max(env(safe-area-inset-right, 0px), 20px);
+  padding-top: max(env(safe-area-inset-top, 0px), 50px); // Matches main content!
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 60px); // Matches main content!
+}
+```
 
 ### **✅ Custom Files in iOS Build:**
 
@@ -201,6 +345,14 @@ npx cap build ios
   }
 }
 ```
+
+### **🎯 Key iOS Margin Features:**
+
+- **📱 iPhone Compatibility**: Works on all iPhone models (including Dynamic Island)
+- **🎨 Visual Consistency**: Main content and sidebar perfectly aligned
+- **🔄 Responsive Design**: Uses `env(safe-area-inset-*)` for automatic adaptation
+- **⚡ Performance**: CSS-only solution, no JavaScript overhead
+- **🛡️ Future-Proof**: Works with new iPhone designs automatically
 
 ---
 
