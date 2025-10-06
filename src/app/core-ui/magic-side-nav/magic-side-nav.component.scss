@@ -192,11 +192,11 @@
   // iOS safe area margins to move content inward while keeping background
   padding-left: max(env(safe-area-inset-left, 0px), 20px);
   padding-right: max(env(safe-area-inset-right, 0px), 20px);
-  padding-top: max(48px, env(safe-area-inset-top, 0px) + 20px);
-  padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+  padding-top: max(env(safe-area-inset-top, 0px), 50px);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
 
   @media (max-width: 600px) {
-    padding-top: max(env(safe-area-inset-top, 0px), 20px);
+    padding-top: max(env(safe-area-inset-top, 0px), 50px);
   }
 }
 
