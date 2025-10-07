@@ -275,8 +275,7 @@ export class FocusModeMainComponent implements OnDestroy {
   }
 
   togglePause(): void {
-    const isRunning = this.focusModeService.isRunning;
-    if (isRunning) {
+    if (this.focusModeService.isRunning()) {
       this._store.dispatch(pauseFocusSession());
     } else {
       this._store.dispatch(unPauseFocusSession());
