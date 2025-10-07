@@ -227,6 +227,11 @@ export const focusModeReducer = createReducer(
     currentCycle: state.currentCycle + 1,
   })),
 
+  on(a.decrementCycle, (state) => ({
+    ...state,
+    currentCycle: Math.max(1, state.currentCycle - 1),
+  })),
+
   on(a.resetCycles, (state) => ({
     ...state,
     currentCycle: 1,

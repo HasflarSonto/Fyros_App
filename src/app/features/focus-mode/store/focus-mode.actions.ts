@@ -42,6 +42,7 @@ export const skipBreak = createAction('[FocusMode] Skip Break');
 export const completeBreak = createAction('[FocusMode] Complete Break');
 
 export const incrementCycle = createAction('[FocusMode] Next Cycle');
+export const decrementCycle = createAction('[FocusMode] Previous Cycle');
 export const resetCycles = createAction('[FocusMode] Reset Cycles');
 
 // Additional compatibility actions

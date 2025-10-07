@@ -70,6 +70,16 @@
         </mat-icon>
       </button>
     }
+    @if (!t.isDone) {
+      <button
+        (click)="toggleTaskDone()"
+        [title]="T.F.TASK.CMP.TOGGLE_DONE | translate"
+        class="check-undone"
+        mat-icon-button
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+    }
 
     <div
       class="title-and-left-btns-wrapper"

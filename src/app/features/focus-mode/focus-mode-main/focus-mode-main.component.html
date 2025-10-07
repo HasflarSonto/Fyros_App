@@ -1,11 +1,22 @@
 @let isCountDown = isCountTimeDown();
+@let currentCycle = focusModeService.currentCycle() ?? 1;
+@let isWorkSession = focusModeService.isSessionRunning();
 <!-- -->
 @if (taskService.currentTask$ | async; as task) {
-  <task-title
-    (valueEdited)="updateTaskTitleIfChanged($event.wasChanged, $event.newVal)"
-    [value]="task.title"
-    class="task-title"
-  ></task-title>
+  <!-- Cycle Progress Dots -->
+  @if (focusModeService.mode() === 'Pomodoro') {
+    <div class="cycle-progress">
+      @for (dot of [1, 2, 3, 4]; track dot) {
+        <div
+          class="cycle-dot"
+          [class.active]="dot <= currentCycle"
+          [class.current]="dot === currentCycle"
+        ></div>
+      }
+    </div>
+  }
+
+  <!-- Main Timer Circle -->
   <div class="progress-wrapper">
     @if (isCountDown) {
       <progress-circle [progress]="focusModeService.progress()"></progress-circle>
@@ -25,6 +36,85 @@
       </div>
     </div>
   </div>
+
+  <!-- Task Title Below Timer -->
+  <div class="task-title-wrapper">
+    <task-title
+      (valueEdited)="updateTaskTitleIfChanged($event.wasChanged, $event.newVal)"
+      [value]="task.title"
+      class="task-title"
+    ></task-title>
+    <button
+      mat-icon-button
+      [matTooltip]="T.F.FOCUS_MODE.FINISH_TASK_AND_SELECT_NEXT | translate"
+      (click)="finishCurrentTask()"
+      class="task-check-btn"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+
+  <!-- Main Control Buttons (Skip and Pause) -->
+  <section class="main-controls">
+    @if (focusModeService.mode() === 'Pomodoro') {
+      <button
+        mat-icon-button
+        [matTooltip]="'Skip to work'"
+        (click)="skipToWork()"
+        class="control-btn skip-btn"
+      >
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        [matTooltip]="focusModeService.isRunning() ? 'Pause' : 'Start'"
+        (click)="togglePause()"
+        class="control-btn pause-btn"
+      >
+        <mat-icon>{{ focusModeService.isRunning() ? 'pause' : 'play_arrow' }}</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        [matTooltip]="'Skip to break'"
+        (click)="skipToBreak()"
+        class="control-btn skip-btn"
+      >
+        <mat-icon>skip_next</mat-icon>
+      </button>
+    }
+  </section>
+
+  <!-- Secondary Control Buttons -->
+  <section class="secondary-controls">
+    @if (isCountDown) {
+      <button
+        mat-icon-button
+        [matTooltip]="'Add 5 minutes'"
+        (click)="extendSession()"
+        class="control-btn extend-btn"
+      >
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    }
+
+    <button
+      (click)="isShowNotes = !isShowNotes"
+      [matTooltip]="T.F.FOCUS_MODE.SHOW_HIDE_NOTES_AND_ATTACHMENTS | translate"
+      class="control-btn notes-btn"
+      color=""
+      mat-icon-button
+    >
+      @if (!isShowNotes) {
+        <mat-icon>chat</mat-icon>
+      }
+      @if (isShowNotes) {
+        <mat-icon>expand_less</mat-icon>
+      }
+    </button>
+  </section>
+
   @if (simpleCounterService.enabledSimpleCounters$ | async; as enabledSimpleCounters) {
     @if (enabledSimpleCounters.length) {
       <section class="simple-counter-buttons">
@@ -40,14 +130,8 @@
       </section>
     }
   }
+
   <section class="controls">
-    <button
-      mat-icon-button
-      [matTooltip]="T.F.FOCUS_MODE.FINISH_TASK_AND_SELECT_NEXT | translate"
-      (click)="finishCurrentTask()"
-    >
-      <mat-icon>done</mat-icon>
-    </button>
     @if (task.issueId && task.issueType !== ICAL_TYPE) {
       <a
         mat-icon-button
@@ -61,29 +145,6 @@
         <mat-icon [svgIcon]="task.issueType | issueIcon"></mat-icon>
       </a>
     }
-    @if (isCountDown) {
-      <button
-        mat-icon-button
-        [matTooltip]="'Add 5 minutes'"
-        (click)="extendSession()"
-      >
-        <mat-icon>add_circle</mat-icon>
-      </button>
-    }
-    <button
-      (click)="isShowNotes = !isShowNotes"
-      [matTooltip]="T.F.FOCUS_MODE.SHOW_HIDE_NOTES_AND_ATTACHMENTS | translate"
-      class="ico-btn show-additional-info-btn"
-      color=""
-      mat-icon-button
-    >
-      @if (!isShowNotes) {
-        <mat-icon>chat</mat-icon>
-      }
-      @if (isShowNotes) {
-        <mat-icon>expand_less</mat-icon>
-      }
-    </button>
   </section>
   @if (isShowNotes) {
     <div

@@ -15,18 +15,22 @@ import {
   selectMiscConfig,
 } from '../../config/store/global-config.reducer';
 import { Task, TaskState } from '../task.model';
-import { EMPTY, of } from 'rxjs';
+import { EMPTY, Observable, of } from 'rxjs';
 import { WorkContextService } from '../../work-context/work-context.service';
 import {
   moveProjectTaskToBacklogList,
   moveProjectTaskToBacklogListAuto,
 } from '../../project/store/project.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTaskBarComponent } from '../add-task-bar/add-task-bar.component';
+import { showFocusOverlay } from '../../focus-mode/store/focus-mode.actions';
 
 @Injectable()
 export class TaskInternalEffects {
   private _actions$ = inject(Actions);
   private _store$ = inject(Store);
-  private _workContextSession = inject(WorkContextService);
+  private _workContextService = inject(WorkContextService);
+  private _matDialog = inject(MatDialog);
 
   onAllSubTasksDone$ = createEffect(() =>
     this._actions$.pipe(
@@ -105,7 +109,7 @@ export class TaskInternalEffects {
       withLatestFrom(
         this._store$.pipe(select(selectConfigFeatureState)),
         this._store$.pipe(select(selectTaskFeatureState)),
-        this._workContextSession.todaysTaskIds$,
+        this._workContextService.todaysTaskIds$,
         (action, globalCfg, state, todaysTaskIds) => ({
           action,
           state,
@@ -167,6 +171,10 @@ export class TaskInternalEffects {
           if (nextId) {
             return of(setCurrentTask({ id: nextId }));
           } else {
+            // Handle case when no tasks are available and play button was pressed
+            if (action.type === toggleStart.type && !state.currentTaskId) {
+              return this._handleNoTasksAvailable();
+            }
             return of(unsetCurrentTask());
           }
         }
@@ -230,5 +238,31 @@ export class TaskInternalEffects {
     }
 
     return nextId;
+  }
+
+  private _handleNoTasksAvailable(): Observable<never> {
+    // Open task creation dialog using AddTaskBarComponent
+    const dialogRef = this._matDialog.open(AddTaskBarComponent, {
+      data: {
+        isAutoStartFocusMode: true, // Flag to indicate we should start focus mode after creation
+      },
+      width: '90vw',
+      maxWidth: '600px',
+    });
+
+    // Listen for task creation and start focus mode
+    dialogRef.componentInstance.afterTaskAdd.subscribe(({ taskId }) => {
+      // Set the newly created task as current
+      this._store$.dispatch(setCurrentTask({ id: taskId }));
+
+      // Start focus mode
+      this._store$.dispatch(showFocusOverlay());
+
+      // Close the dialog
+      dialogRef.close();
+    });
+
+    // Return empty observable - the dialog will handle task creation and focus mode start
+    return EMPTY;
   }
 }

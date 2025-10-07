@@ -19,8 +19,16 @@ import { IssueService } from '../../issue/issue.service';
 import { Store } from '@ngrx/store';
 import {
   completeTask,
+  decrementCycle,
+  incrementCycle,
+  pauseFocusSession,
+  resetCycles,
   selectFocusTask,
   setFocusSessionDuration,
+  skipBreak,
+  startBreak,
+  startFocusSession,
+  unPauseFocusSession,
 } from '../store/focus-mode.actions';
 import { selectTimeDuration } from '../store/focus-mode.selectors';
 import { TaskSharedActions } from '../../../root-store/meta/task-shared.actions';
@@ -43,6 +51,7 @@ import { TaskAttachmentListComponent } from '../../tasks/task-attachment/task-at
 import { slideInOutFromBottomAni } from '../../../ui/animations/slide-in-out-from-bottom.ani';
 import { FocusModeService } from '../focus-mode.service';
 import { BreathingDotComponent } from '../../../ui/breathing-dot/breathing-dot.component';
+import { ConfettiService } from '../../../core/confetti/confetti.service';
 
 @Component({
   selector: 'focus-mode-main',
@@ -77,6 +86,7 @@ export class FocusModeMainComponent implements OnDestroy {
   private readonly _store = inject(Store);
 
   focusModeService = inject(FocusModeService);
+  private readonly _confettiService = inject(ConfettiService);
 
   timeElapsed = this.focusModeService.timeElapsed;
   isCountTimeDown = this.focusModeService.isCountTimeDown;
@@ -208,6 +218,93 @@ export class FocusModeMainComponent implements OnDestroy {
           setFocusSessionDuration({ focusSessionDuration: extendedDuration }),
         );
       });
+  }
+
+  skipToBreak(): void {
+    // Skip current work session and start a break
+    this._store.dispatch(skipBreak());
+
+    // Get current cycle before incrementing
+    const currentCycle = this.focusModeService.currentCycle() ?? 1;
+
+    // Increment cycle when skipping a work session
+    this._store.dispatch(incrementCycle());
+
+    // Check if we just completed all 4 work sessions
+    if (currentCycle === 4) {
+      this._celebrateCompletion();
+      // Reset cycles after celebration
+      setTimeout(() => {
+        this._store.dispatch(resetCycles());
+      }, 2000); // Wait 2 seconds for confetti to play
+    }
+
+    const pomodoroConfig = this.focusModeService.pomodoroConfig();
+
+    const cyclesBeforeLong = pomodoroConfig?.cyclesBeforeLongerBreak ?? 4;
+    const nextCycle = currentCycle + 1;
+    const isLongBreak = nextCycle % cyclesBeforeLong === 0;
+
+    const breakDuration = isLongBreak
+      ? (pomodoroConfig?.longerBreakDuration ?? 15 * 60 * 1000) // 15 minutes
+      : (pomodoroConfig?.breakDuration ?? 5 * 60 * 1000); // 5 minutes
+
+    this._store.dispatch(
+      startBreak({
+        duration: breakDuration,
+        isLongBreak,
+      }),
+    );
+  }
+
+  skipToWork(): void {
+    // Skip current break and start a work session
+    this._store.dispatch(skipBreak());
+
+    // Decrement cycle when going back to work (unless already at cycle 1)
+    const currentCycle = this.focusModeService.currentCycle() ?? 1;
+    if (currentCycle > 1) {
+      this._store.dispatch(decrementCycle());
+    }
+
+    // Start a new work session
+    const pomodoroConfig = this.focusModeService.pomodoroConfig();
+    const workDuration = pomodoroConfig?.duration ?? 25 * 60 * 1000; // 25 minutes
+
+    this._store.dispatch(startFocusSession({ duration: workDuration }));
+  }
+
+  togglePause(): void {
+    const isRunning = this.focusModeService.isRunning();
+    if (isRunning) {
+      this._store.dispatch(pauseFocusSession());
+    } else {
+      this._store.dispatch(unPauseFocusSession());
+    }
+  }
+
+  private _celebrateCompletion(): void {
+    const defaults = { startVelocity: 80, spread: 720, ticks: 600, zIndex: 0 };
+    const particleCount = 200;
+
+    // Create confetti from multiple positions for a grand celebration
+    this._confettiService.createConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: 0.2, y: 0.8 },
+    });
+
+    this._confettiService.createConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: 0.5, y: 0.8 },
+    });
+
+    this._confettiService.createConfetti({
+      ...defaults,
+      particleCount,
+      origin: { x: 0.8, y: 0.8 },
+    });
   }
 
   protected readonly ICAL_TYPE = ICAL_TYPE;

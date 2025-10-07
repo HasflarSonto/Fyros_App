@@ -13,101 +13,102 @@
       <header class="work-view-header">
         <!-- Custom Welcome Message -->
         <div class="custom-welcome-message">
-          <h1>🎯 Welcome to Your Customized Super Productivity!</h1>
-          <p>Time to crush those tasks! 💪</p>
+          <h1>Hi, Antonio!</h1>
+          <p>What will you do Today?</p>
         </div>
-
-        @if (!isPlanningMode() && (estimateRemainingToday() || workingToday())) {
-          <div
-            @fade
-            class="status-bar"
-          >
-            <div
-              class="item"
-              matTooltip="{{ T.WW.TODAY_REMAINING | translate }} ~{{
-                todayRemainingInProject() | msToString
-              }}"
-              [matTooltipDisabled]="
-                !(workContextService.isActiveWorkContextProject$ | async)
-              "
-              matTooltipPosition="above"
-            >
-              <span class="label">{{ T.WW.ESTIMATE_REMAINING | translate }}</span>
-              <span class="no-wrap">
-                ~<strong class="time-val">{{
-                  estimateRemainingToday() | msToString
-                }}</strong>
-                <mat-icon
-                  style="margin-left: 2px"
-                  svgIcon="estimate_remaining"
-                ></mat-icon>
-              </span>
-            </div>
-            <div class="item">
-              <span class="label">{{ T.WW.WORKING_TODAY | translate }}</span>
-              <span class="no-wrap">
-                <strong class="time-val">{{ workingToday() | msToString }}</strong>
-                @if (
-                  workContextService.workingTodayArchived$ | async;
-                  as workingTodayArchived
-                ) {
-                  <span [matTooltip]="T.WW.WORKING_TODAY_ARCHIVED | translate"
-                    >(+{{ workingTodayArchived | msToString }})</span
-                  >
-                }
-                <mat-icon svgIcon="working_today"></mat-icon>
-              </span>
-            </div>
-            @if (isShowTimeWorkedWithoutBreak) {
-              <div class="item hide-xs">
-                <span class="label">{{ T.WW.WITHOUT_BREAK | translate }} </span>
-                <span class="no-wrap">
-                  <strong class="time-val">{{
-                    takeABreakService.timeWorkingWithoutABreak$ | async | msToString
-                  }}</strong
-                  ><mat-icon>timer</mat-icon>
-                </span>
-                <div
-                  [matTooltip]="T.WW.RESET_BREAK_TIMER | translate"
-                  class="take-a-break-reset-btn"
-                >
-                  <button
-                    (click)="resetBreakTimer()"
-                    color="lighter"
-                    mat-mini-fab
-                  >
-                    <mat-icon>timer_off</mat-icon>
-                  </button>
-                </div>
-              </div>
-            }
-          </div>
-        }
-        @if (isPlanningMode()) {
-          <div class="planning-mode-header">
-            @if (!undoneTasks()?.length) {
-              <h3 class="planning-mode-header mat-h3">
-                {{ T.WW.ADD_SOME_TASKS | translate }}
-              </h3>
-            }
-            @if (undoneTasks()?.length) {
-              <div class="status-bar">
-                <div class="item">
-                  <span class="label">{{ T.WW.TIME_ESTIMATED | translate }}</span>
-                  <span class="no-wrap">
-                    <strong class="time-val"
-                      >~{{
-                        workContextService.estimateRemainingToday$ | async | msToString
-                      }}</strong
-                    >
-                    <mat-icon>timer</mat-icon>
-                  </span>
-                </div>
-              </div>
-            }
-          </div>
-        }
       </header>
+
+      <!-- Status Bar - Moved below the title card -->
+      @if (!isPlanningMode() && (estimateRemainingToday() || workingToday())) {
+        <div
+          @fade
+          class="status-bar"
+        >
+          <div
+            class="item"
+            matTooltip="{{ T.WW.TODAY_REMAINING | translate }} ~{{
+              todayRemainingInProject() | msToString
+            }}"
+            [matTooltipDisabled]="
+              !(workContextService.isActiveWorkContextProject$ | async)
+            "
+            matTooltipPosition="above"
+          >
+            <span class="label">{{ T.WW.ESTIMATE_REMAINING | translate }}</span>
+            <span class="no-wrap">
+              ~<strong class="time-val">{{
+                estimateRemainingToday() | msToString
+              }}</strong>
+              <mat-icon
+                style="margin-left: 2px"
+                svgIcon="estimate_remaining"
+              ></mat-icon>
+            </span>
+          </div>
+          <div class="item">
+            <span class="label">{{ T.WW.WORKING_TODAY | translate }}</span>
+            <span class="no-wrap">
+              <strong class="time-val">{{ workingToday() | msToString }}</strong>
+              @if (
+                workContextService.workingTodayArchived$ | async;
+                as workingTodayArchived
+              ) {
+                <span [matTooltip]="T.WW.WORKING_TODAY_ARCHIVED | translate"
+                  >(+{{ workingTodayArchived | msToString }})</span
+                >
+              }
+              <mat-icon svgIcon="working_today"></mat-icon>
+            </span>
+          </div>
+          @if (isShowTimeWorkedWithoutBreak) {
+            <div class="item">
+              <span class="label">{{ T.WW.WITHOUT_BREAK | translate }} </span>
+              <span class="no-wrap">
+                <strong class="time-val">{{
+                  takeABreakService.timeWorkingWithoutABreak$ | async | msToString
+                }}</strong
+                ><mat-icon>timer</mat-icon>
+              </span>
+              <div
+                [matTooltip]="T.WW.RESET_BREAK_TIMER | translate"
+                class="take-a-break-reset-btn"
+              >
+                <button
+                  (click)="resetBreakTimer()"
+                  color="lighter"
+                  mat-mini-fab
+                >
+                  <mat-icon>timer_off</mat-icon>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+      @if (isPlanningMode()) {
+        <div class="planning-mode-header">
+          @if (!undoneTasks()?.length) {
+            <h3 class="planning-mode-header mat-h3">
+              {{ T.WW.ADD_SOME_TASKS | translate }}
+            </h3>
+          }
+          @if (undoneTasks()?.length) {
+            <div class="status-bar">
+              <div class="item">
+                <span class="label">{{ T.WW.TIME_ESTIMATED | translate }}</span>
+                <span class="no-wrap">
+                  <strong class="time-val"
+                    >~{{
+                      workContextService.estimateRemainingToday$ | async | msToString
+                    }}</strong
+                  >
+                  <mat-icon>timer</mat-icon>
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      }
 
       <div class="task-list-wrapper">
         @if (!isPlanningMode() && !(workContextService.isHasTasksToWorkOn$ | async)) {
