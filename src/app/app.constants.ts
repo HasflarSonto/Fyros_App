@@ -144,6 +144,12 @@ export const RTL_LANGUAGES: LanguageCode[] = [LanguageCode.ar, LanguageCode.fa];
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export enum THEME_COLOR_MAP {
+  'fyros-green' = '#809076',
+  'fyros-dark-blue' = '#64747d',
+  'fyros-beige' = '#dbd4c2',
+  'fyros-brown' = '#574535',
+  'fyros-dark-green' = '#525645',
+  'fyros-black' = '#333333',
   'light-blue' = '#03a9f4',
   'pink' = '#e91e63',
   'indigo' = '#3f51b5',

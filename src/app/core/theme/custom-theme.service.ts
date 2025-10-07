@@ -11,6 +11,12 @@ export interface CustomTheme {
 
 export const AVAILABLE_CUSTOM_THEMES: CustomTheme[] = [
   {
+    id: 'fyros',
+    name: 'Fyros',
+    url: 'assets/themes/fyros.css',
+    requiredMode: 'system',
+  },
+  {
     id: 'default',
     name: 'Default',
     url: '',

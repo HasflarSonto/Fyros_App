@@ -70,13 +70,13 @@
   // ===============================
 
   // -----------------------------
-  // Semantic Colors
+  // Semantic Colors (Fyros Theme)
   // -----------------------------
-  --color-success: #4caf50;
-  --color-warning: #ff9800;
-  --color-danger: #f44336;
-  --success-green: #4fa758;
-  --sun-yellow: #fff400;
+  --color-success: #809076;
+  --color-warning: #dbd4c2;
+  --color-danger: #8b4513;
+  --success-green: #809076;
+  --sun-yellow: #dbd4c2;
 
   // -----------------------------
   // Dark Theme Elevation Colors
@@ -207,10 +207,10 @@
 // Light Theme (Default)
 // -----------------------------
 body {
-  // Background colors
+  // Background colors (Fyros Theme)
   --bg: #f8f8f7;
-  --bg-darker: rgb(235, 235, 235);
-  --bg-drag-col: rgb(242, 242, 242);
+  --bg-darker: #dbd4c2;
+  --bg-drag-col: rgba(128, 144, 118, 0.1);
   --bg-slightly-lighter: var(--bg);
   --bg-lighter: #fff;
   --bg-lightest: #fff;
@@ -218,50 +218,50 @@ body {
   --card-bg: #ffffff;
   --card-shadow: var(--whiteframe-shadow-2dp);
 
-  // Navigation & Panel backgrounds
+  // Navigation & Panel backgrounds (Fyros Theme)
   --sidenav-bg: transparent;
   --sidenav-bg-mobile: var(--bg);
-  --sidenav-active: rgba(255, 255, 255, 1.25);
-  --sidenav-hover: rgba(205, 205, 205, 0.35);
-  --sidenav-active-text: var(--palette-primary-800);
-  --sidebar-border: var(--divider-color);
-  --sidebar-hover: var(--palette-background-hover);
-  --sidebar-text: var(--text-color);
-  --sidebar-text-secondary: var(--text-color-muted);
-  --overlay-bg: var(--c-backdrop, rgba(0, 0, 0, 0.6));
+  --sidenav-active: rgba(128, 144, 118, 0.2);
+  --sidenav-hover: rgba(128, 144, 118, 0.1);
+  --sidenav-active-text: #525645;
+  --sidebar-border: #dbd4c2;
+  --sidebar-hover: rgba(128, 144, 118, 0.1);
+  --sidebar-text: #333333;
+  --sidebar-text-secondary: rgba(51, 51, 51, 0.6);
+  --overlay-bg: var(--c-backdrop, rgba(51, 51, 51, 0.6));
   --right-panel-bg: transparent;
   --right-panel-bg-mobile: #fff;
   --bottom-nav-height: 44px;
   --bottom-nav-bg: var(--sidenav-bg-mobile);
   --bottom-panel-bg: #fff;
-  --bottom-panel-handle: rgba(0, 0, 0, 0.4);
-  --bottom-panel-handle-active: rgba(0, 0, 0, 0.6);
+  --bottom-panel-handle: rgba(51, 51, 51, 0.4);
+  --bottom-panel-handle-active: rgba(51, 51, 51, 0.6);
 
-  // Text colors
-  --text-color: rgb(44, 44, 44);
-  --text-color-less-intense: rgba(44, 44, 44, 0.9);
-  --text-color-muted: rgba(44, 44, 44, 0.6);
+  // Text colors (Fyros Theme)
+  --text-color: #333333;
+  --text-color-less-intense: #574535;
+  --text-color-muted: rgba(51, 51, 51, 0.6);
   --text-color-more-intense: var(--text-color);
-  --text-color-most-intense: rgb(0, 0, 0);
+  --text-color-most-intense: #000000;
 
-  // Selected task
-  --selected-task-bg-color: #fff;
+  // Selected task (Fyros Theme)
+  --selected-task-bg-color: rgba(128, 144, 118, 0.2);
 
-  // Borders and separators
-  --extra-border-color: #eee;
-  --separator-color: #d0d0d0;
-  --divider-color: rgba(0, 0, 0, 0.12);
+  // Borders and separators (Fyros Theme)
+  --extra-border-color: #c4b8a0;
+  --separator-color: rgba(128, 144, 118, 0.2);
+  --divider-color: rgba(128, 144, 118, 0.2);
 
   // Backdrop
   --c-backdrop: var(--c-dark-60);
 
-  // Note colors
+  // Note colors (Fyros Theme)
   --standard-note-bg: #ffffff;
   --standard-note-fg: var(--text-color);
-  --standard-note-bg-hovered: var(--standard-note-bg);
+  --standard-note-bg-hovered: rgba(128, 144, 118, 0.1);
   --notes-container-bg: inherit;
 
-  // Task colors
+  // Task colors (Fyros Theme)
   --task-c-bg: #fff;
   --task-c-selected-bg: var(--selected-task-bg-color);
   --sub-task-c-bg: var(--task-c-bg);

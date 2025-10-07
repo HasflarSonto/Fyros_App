@@ -1,0 +1,382 @@
+/**
+ * Fyros Theme for Super Productivity
+ * Custom green-based color scheme with natural earth tones
+ * Main: #809076 (green), Supporting: #64747d (dark blue), #dbd4c2 (beige), #574535 (brown), #525645 (dark green), #333333 (black)
+ */
+
+/* Fyros theme variables */
+:root {
+  /* ===============================
+   * FYROS COLOR PALETTE
+   * ===============================*/
+
+  --fyros-primary: #809076;
+  --fyros-primary-dark: #525645;
+  --fyros-primary-light: #9ba88a;
+  --fyros-secondary: #64747d;
+  --fyros-secondary-dark: #4a5a61;
+  --fyros-accent: #dbd4c2;
+  --fyros-accent-dark: #c4b8a0;
+  --fyros-brown: #574535;
+  --fyros-brown-light: #6b5442;
+  --fyros-black: #333333;
+  --fyros-black-light: #4a4a4a;
+
+  /* ===============================
+   * SEMANTIC COLORS
+   * ===============================*/
+
+  --fyros-success: #809076;
+  --fyros-warning: #dbd4c2;
+  --fyros-danger: #8b4513;
+  --fyros-info: #64747d;
+
+  /* ===============================
+   * BACKGROUND COLORS
+   * ===============================*/
+
+  --fyros-bg-primary: #f8f8f7;
+  --fyros-bg-secondary: #dbd4c2;
+  --fyros-bg-card: #ffffff;
+  --fyros-bg-hover: rgba(128, 144, 118, 0.1);
+  --fyros-bg-active: rgba(128, 144, 118, 0.2);
+
+  /* ===============================
+   * TEXT COLORS
+   * ===============================*/
+
+  --fyros-text-primary: #333333;
+  --fyros-text-secondary: #574535;
+  --fyros-text-muted: rgba(51, 51, 51, 0.6);
+  --fyros-text-inverse: #ffffff;
+
+  /* ===============================
+   * BORDER & SEPARATOR COLORS
+   * ===============================*/
+
+  --fyros-border: #dbd4c2;
+  --fyros-border-dark: #c4b8a0;
+  --fyros-separator: rgba(128, 144, 118, 0.2);
+
+  /* ===============================
+   * SHADOW COLORS
+   * ===============================*/
+
+  --fyros-shadow: rgba(51, 51, 51, 0.1);
+  --fyros-shadow-dark: rgba(51, 51, 51, 0.2);
+}
+
+/* ===============================
+ * LIGHT THEME OVERRIDES
+ * ===============================*/
+
+body:not(.isDarkTheme) {
+  /* Background colors */
+  --bg: var(--fyros-bg-primary);
+  --bg-darker: var(--fyros-bg-secondary);
+  --bg-lighter: var(--fyros-bg-card);
+  --bg-slightly-lighter: var(--fyros-bg-primary);
+  --bg-lightest: var(--fyros-bg-card);
+  --bg-super-light: var(--fyros-bg-card);
+  --card-bg: var(--fyros-bg-card);
+
+  /* Text colors */
+  --text-color: var(--fyros-text-primary);
+  --text-color-less-intense: var(--fyros-text-secondary);
+  --text-color-muted: var(--fyros-text-muted);
+  --text-color-more-intense: var(--fyros-text-primary);
+  --text-color-most-intense: var(--fyros-black);
+
+  /* Navigation colors */
+  --sidenav-bg: transparent;
+  --sidenav-bg-mobile: var(--fyros-bg-primary);
+  --sidenav-active: var(--fyros-bg-active);
+  --sidenav-hover: var(--fyros-bg-hover);
+  --sidenav-active-text: var(--fyros-primary-dark);
+  --sidebar-border: var(--fyros-border);
+  --sidebar-hover: var(--fyros-bg-hover);
+  --sidebar-text: var(--fyros-text-primary);
+  --sidebar-text-secondary: var(--fyros-text-muted);
+
+  /* Separator and border colors */
+  --separator-color: var(--fyros-separator);
+  --divider-color: var(--fyros-border);
+  --extra-border-color: var(--fyros-border-dark);
+
+  /* Task colors */
+  --task-c-bg: var(--fyros-bg-card);
+  --task-c-selected-bg: var(--fyros-bg-active);
+  --sub-task-c-bg: var(--fyros-bg-card);
+  --sub-task-c-bg-done: var(--fyros-bg-card);
+  --task-c-bg-done: var(--fyros-bg-card);
+  --task-c-current-bg: var(--fyros-bg-card);
+  --task-c-drag-drop-bg: var(--fyros-bg-card);
+  --sub-task-c-bg-in-selected: var(--fyros-bg-card);
+
+  /* Selected task */
+  --selected-task-bg-color: var(--fyros-bg-active);
+
+  /* Note colors */
+  --standard-note-bg: var(--fyros-bg-card);
+  --standard-note-fg: var(--fyros-text-primary);
+  --standard-note-bg-hovered: var(--fyros-bg-hover);
+  --notes-container-bg: inherit;
+
+  /* Backdrop */
+  --c-backdrop: rgba(51, 51, 51, 0.6);
+  --overlay-bg: var(--c-backdrop);
+
+  /* Right panel */
+  --right-panel-bg: transparent;
+  --right-panel-bg-mobile: var(--fyros-bg-card);
+
+  /* Bottom navigation */
+  --bottom-nav-bg: var(--fyros-bg-primary);
+  --bottom-panel-bg: var(--fyros-bg-card);
+  --bottom-panel-handle: rgba(51, 51, 51, 0.4);
+  --bottom-panel-handle-active: rgba(51, 51, 51, 0.6);
+}
+
+/* ===============================
+ * DARK THEME OVERRIDES
+ * ===============================*/
+
+body.isDarkTheme {
+  /* Background colors */
+  --bg: #2a2a2a;
+  --bg-darker: #1f1f1f;
+  --bg-lighter: #3a3a3a;
+  --bg-slightly-lighter: #2a2a2a;
+  --bg-lightest: #3a3a3a;
+  --bg-super-light: #3a3a3a;
+  --card-bg: #3a3a3a;
+
+  /* Text colors */
+  --text-color: #dbd4c2;
+  --text-color-less-intense: rgba(219, 212, 194, 0.9);
+  --text-color-muted: rgba(219, 212, 194, 0.6);
+  --text-color-more-intense: #dbd4c2;
+  --text-color-most-intense: #ffffff;
+
+  /* Navigation colors */
+  --sidenav-bg: transparent;
+  --sidenav-bg-mobile: #2a2a2a;
+  --sidenav-active: rgba(128, 144, 118, 0.3);
+  --sidenav-hover: rgba(128, 144, 118, 0.2);
+  --sidenav-active-text: #9ba88a;
+  --sidebar-border: #4a4a4a;
+  --sidebar-hover: rgba(128, 144, 118, 0.2);
+  --sidebar-text: #dbd4c2;
+  --sidebar-text-secondary: rgba(219, 212, 194, 0.6);
+
+  /* Separator and border colors */
+  --separator-color: #4a4a4a;
+  --divider-color: #4a4a4a;
+  --extra-border-color: #5a5a5a;
+
+  /* Task colors */
+  --task-c-bg: #3a3a3a;
+  --task-c-selected-bg: rgba(128, 144, 118, 0.3);
+  --sub-task-c-bg: #3a3a3a;
+  --sub-task-c-bg-done: #3a3a3a;
+  --task-c-bg-done: #3a3a3a;
+  --task-c-current-bg: #3a3a3a;
+  --task-c-drag-drop-bg: #3a3a3a;
+  --sub-task-c-bg-in-selected: #3a3a3a;
+
+  /* Selected task */
+  --selected-task-bg-color: rgba(128, 144, 118, 0.3);
+
+  /* Note colors */
+  --standard-note-bg: #3a3a3a;
+  --standard-note-fg: #dbd4c2;
+  --standard-note-bg-hovered: rgba(128, 144, 118, 0.2);
+  --notes-container-bg: inherit;
+
+  /* Backdrop */
+  --c-backdrop: rgba(0, 0, 0, 0.8);
+  --overlay-bg: var(--c-backdrop);
+
+  /* Right panel */
+  --right-panel-bg: transparent;
+  --right-panel-bg-mobile: #3a3a3a;
+
+  /* Bottom navigation */
+  --bottom-nav-bg: #2a2a2a;
+  --bottom-panel-bg: #3a3a3a;
+  --bottom-panel-handle: rgba(219, 212, 194, 0.4);
+  --bottom-panel-handle-active: rgba(219, 212, 194, 0.6);
+}
+
+/* ===============================
+ * ANGULAR MATERIAL OVERRIDES
+ * ===============================*/
+
+/* Primary color overrides */
+.mat-primary {
+  background-color: var(--fyros-primary) !important;
+  color: var(--fyros-text-inverse) !important;
+}
+
+.mat-primary .mat-button-focus-overlay,
+.mat-primary .mat-button-ripple {
+  background-color: var(--fyros-primary-dark) !important;
+}
+
+/* Accent color overrides */
+.mat-accent {
+  background-color: var(--fyros-accent) !important;
+  color: var(--fyros-text-primary) !important;
+}
+
+/* Warn color overrides */
+.mat-warn {
+  background-color: var(--fyros-danger) !important;
+  color: var(--fyros-text-inverse) !important;
+}
+
+/* Button overrides */
+.mat-raised-button.mat-primary {
+  background-color: var(--fyros-primary) !important;
+  color: var(--fyros-text-inverse) !important;
+}
+
+.mat-raised-button.mat-primary:hover {
+  background-color: var(--fyros-primary-dark) !important;
+}
+
+.mat-raised-button.mat-accent {
+  background-color: var(--fyros-accent) !important;
+  color: var(--fyros-text-primary) !important;
+}
+
+.mat-raised-button.mat-accent:hover {
+  background-color: var(--fyros-accent-dark) !important;
+}
+
+/* FAB (Floating Action Button) overrides */
+.mat-fab.mat-primary {
+  background-color: var(--fyros-primary) !important;
+  color: var(--fyros-text-inverse) !important;
+}
+
+.mat-fab.mat-primary:hover {
+  background-color: var(--fyros-primary-dark) !important;
+}
+
+/* Card overrides */
+.mat-card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--fyros-border) !important;
+}
+
+/* Input overrides */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: var(--fyros-border) !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--fyros-primary) !important;
+}
+
+/* Progress bar overrides */
+.mat-progress-bar-fill::after {
+  background-color: var(--fyros-primary) !important;
+}
+
+.mat-progress-bar-buffer {
+  background-color: var(--fyros-bg-secondary) !important;
+}
+
+/* Checkbox overrides */
+.mat-checkbox-checked .mat-checkbox-background {
+  background-color: var(--fyros-primary) !important;
+}
+
+/* Radio button overrides */
+.mat-radio-button.mat-primary .mat-radio-inner-circle {
+  background-color: var(--fyros-primary) !important;
+}
+
+.mat-radio-button.mat-primary .mat-radio-outer-circle {
+  border-color: var(--fyros-primary) !important;
+}
+
+/* Slider overrides */
+.mat-slider-track-fill {
+  background-color: var(--fyros-primary) !important;
+}
+
+.mat-slider-thumb {
+  background-color: var(--fyros-primary) !important;
+}
+
+/* Tab overrides */
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: var(--fyros-primary) !important;
+}
+
+.mat-tab-group.mat-primary .mat-tab-label.mat-tab-label-active {
+  color: var(--fyros-primary) !important;
+}
+
+/* Toolbar overrides */
+.mat-toolbar.mat-primary {
+  background-color: var(--fyros-primary) !important;
+  color: var(--fyros-text-inverse) !important;
+}
+
+/* Menu overrides */
+.mat-menu-panel {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--fyros-border) !important;
+}
+
+.mat-menu-item:hover {
+  background-color: var(--fyros-bg-hover) !important;
+}
+
+/* Dialog overrides */
+.mat-dialog-container {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--fyros-border) !important;
+}
+
+/* Snackbar overrides */
+.mat-snack-bar-container {
+  background-color: var(--fyros-primary-dark) !important;
+  color: var(--fyros-text-inverse) !important;
+}
+
+/* Custom welcome message styling */
+.custom-welcome-message {
+  background: linear-gradient(
+    135deg,
+    var(--fyros-primary) 0%,
+    var(--fyros-primary-dark) 100%
+  ) !important;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 6px var(--fyros-shadow);
+
+  h1 {
+    margin: 0 0 8px 0;
+    color: var(--fyros-text-inverse) !important;
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1rem;
+  }
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
