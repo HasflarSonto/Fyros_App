@@ -76,6 +76,7 @@ describe('FocusModeMainComponent', () => {
       isBreakActive: jasmine.createSpy().and.returnValue(false),
       currentCycle: jasmine.createSpy().and.returnValue(1),
       mode: jasmine.createSpy().and.returnValue('Pomodoro'),
+      isRunning: jasmine.createSpy().and.returnValue(false),
     });
 
     await TestBed.configureTestingModule({

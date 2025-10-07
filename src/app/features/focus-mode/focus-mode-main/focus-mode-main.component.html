@@ -68,11 +68,11 @@
 
       <button
         mat-icon-button
-        [matTooltip]="focusModeService.isRunning ? 'Pause' : 'Start'"
+        [matTooltip]="focusModeService.isRunning() ? 'Pause' : 'Start'"
         (click)="togglePause()"
         class="control-btn pause-btn"
       >
-        <mat-icon>{{ focusModeService.isRunning ? 'pause' : 'play_arrow' }}</mat-icon>
+        <mat-icon>{{ focusModeService.isRunning() ? 'pause' : 'play_arrow' }}</mat-icon>
       </button>
 
       <button
