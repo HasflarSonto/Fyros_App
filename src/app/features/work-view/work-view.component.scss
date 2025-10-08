@@ -360,13 +360,22 @@ finish-day-btn,
   text-align: center;
   padding: 20px;
   background: #809076ff;
-  border-radius: 12px;
+  border-radius: 0; /* Removed border radius for full width */
   margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 100vw; /* Full viewport width */
   max-width: none;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: calc(
+    -1 * var(--s-half)
+  ); /* Negative margin to counteract parent padding */
+  margin-right: calc(
+    -1 * var(--s-half)
+  ); /* Negative margin to counteract parent padding */
+
+  @include mq(xs) {
+    margin-left: calc(-1 * var(--s2)); /* Adjust for larger screens */
+    margin-right: calc(-1 * var(--s2)); /* Adjust for larger screens */
+  }
 
   h1 {
     margin: 0 0 12px 0;
