@@ -158,20 +158,20 @@
 
 progress-circle,
 breathing-dot {
-  width: 200px;
-  height: 200px;
+  width: 220px; /* Increased from 200px */
+  height: 220px; /* Increased from 200px */
   @media (min-height: 800px) and (min-width: 500px) {
-    width: 240px;
-    height: 240px;
+    width: 260px; /* Increased from 240px */
+    height: 260px; /* Increased from 240px */
   }
   @media (min-height: 900px) and (min-width: 600px) {
-    width: 280px;
-    height: 280px;
+    width: 300px; /* Increased from 280px */
+    height: 300px; /* Increased from 280px */
   }
 
   @media (max-height: 500px) {
-    width: 120px;
-    height: 120px;
+    width: 140px; /* Increased from 120px */
+    height: 140px; /* Increased from 120px */
   }
 }
 
@@ -253,10 +253,18 @@ breathing-dot {
       background-color: #809076ff;
       color: white;
       border-color: #809076ff;
+      width: 56px !important; /* Increased from 48px */
+      height: 56px !important; /* Increased from 48px */
 
       &:hover {
         background-color: #6d7f6dff;
         border-color: #6d7f6dff;
+      }
+
+      mat-icon {
+        font-size: 28px !important; /* Increased from 24px */
+        width: 28px !important; /* Increased from 24px */
+        height: 28px !important; /* Increased from 24px */
       }
     }
   }
@@ -307,19 +315,19 @@ breathing-dot {
 
     &.extend-btn {
       background-color: rgba(0, 0, 0, 0.05);
-      color: var(--palette-accent-500);
+      color: #64757dff;
 
       &:hover {
-        background-color: var(--palette-accent-50);
+        background-color: rgba(100, 117, 125, 0.1);
       }
     }
 
     &.notes-btn {
       background-color: rgba(0, 0, 0, 0.05);
-      color: var(--palette-primary-500);
+      color: #64757dff;
 
       &:hover {
-        background-color: var(--palette-primary-50);
+        background-color: rgba(100, 117, 125, 0.1);
       }
     }
   }
