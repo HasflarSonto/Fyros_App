@@ -221,6 +221,32 @@ dialogRef.componentInstance.afterTaskAdd.subscribe(({ taskId }) => {
 - **Performance**: Signals are more efficient than observables for UI updates
 - **Testing**: Mock all injected services, especially signal-based ones
 
+### **Color Customization**
+
+```scss
+// Override Material Design colors in src/styles.scss
+.mat-primary,
+button[color='primary'],
+.e2e-add-task-submit,
+.e2e-finish-day {
+  background-color: #64757dff !important;
+  color: white !important;
+}
+
+// Include hover states
+.mat-primary:hover,
+button[color='primary']:hover {
+  background-color: #5a6b73ff !important;
+}
+```
+
+**Key Points:**
+
+- Use `!important` to override Material Design theme colors
+- Target specific button classes (`.e2e-add-task-submit`, `.e2e-finish-day`)
+- Include hover states for better UX
+- Changes apply to all primary buttons globally
+
 ## 📊 Current Customizations
 
 - **Welcome Banner**: "Hi, Antonio! What will you do Today?" in work-view component
