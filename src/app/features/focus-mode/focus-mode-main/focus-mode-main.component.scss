@@ -89,7 +89,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Reduced from 12px to 8px */
+  gap: 4px; /* Reduced from 8px to 4px for even closer spacing */
   margin: var(--s);
   margin-top: var(--s2);
   margin-bottom: var(--s2);
@@ -126,28 +126,33 @@
   }
 
   .task-check-btn {
-    width: 44px !important; /* Increased from 40px to 44px */
-    height: 44px !important; /* Increased from 40px to 44px */
-    border-radius: 50%;
-    background-color: transparent;
+    width: auto !important; /* Changed from 44px to auto */
+    height: auto !important; /* Changed from 44px to auto */
+    border-radius: 0; /* Changed from 50% to 0 - no circular background */
+    background-color: transparent; /* Keep transparent */
     color: #809076ff;
     border: none;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    padding: 4px; /* Add small padding for touch target */
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-      transform: scale(1.05);
+      background-color: transparent; /* Changed from rgba(0, 0, 0, 0.05) to transparent */
+      transform: scale(
+        1.1
+      ); /* Changed from scale(1.05) to scale(1.1) for more noticeable hover */
     }
 
     &:active {
-      transform: scale(0.95);
+      transform: scale(
+        0.9
+      ); /* Changed from scale(0.95) to scale(0.9) for more noticeable press */
     }
 
     mat-icon {
-      font-size: 22px !important; /* Increased from 20px to 22px */
-      width: 22px !important; /* Increased from 20px to 22px */
-      height: 22px !important; /* Increased from 20px to 22px */
+      font-size: 24px !important; /* Increased from 22px to 24px for better visibility without background */
+      width: 24px !important; /* Increased from 22px to 24px */
+      height: 24px !important; /* Increased from 22px to 24px */
     }
   }
 }
