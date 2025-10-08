@@ -140,6 +140,87 @@ xcrun simctl erase all
 - **Effects**: `src/app/features/tasks/store/task-internal.effects.ts` - Auto-start logic
 - **Auto-Creation**: Dialog integration for seamless task creation
 
+## 🚨 Critical Development Gotchas
+
+### **Angular Signals in Templates**
+
+```typescript
+// ✅ CORRECT: Signal functions must be called with ()
+focusModeService.isRunning(); // Returns boolean
+
+// ❌ WRONG: Missing () causes TypeScript errors
+focusModeService.isRunning; // Returns function reference
+```
+
+### **Test Mocking Patterns**
+
+```typescript
+// ✅ CORRECT: Mock signal functions properly
+const focusModeServiceSpy = jasmine.createSpyObj('FocusModeService', [], {
+  isRunning: jasmine.createSpy().and.returnValue(false),
+  currentCycle: jasmine.createSpy().and.returnValue(1),
+  mode: jasmine.createSpy().and.returnValue('Pomodoro'),
+});
+```
+
+### **NgRx Effects Integration**
+
+```typescript
+// ✅ CORRECT: Handle no-tasks scenario in effects
+if (action.type === toggleStart.type && !state.currentTaskId) {
+  return this._handleNoTasksAvailable();
+}
+```
+
+### **Dialog Integration**
+
+```typescript
+// ✅ CORRECT: Listen to component outputs for dialog actions
+dialogRef.componentInstance.afterTaskAdd.subscribe(({ taskId }) => {
+  this._store$.dispatch(setCurrentTask({ id: taskId }));
+  this._store$.dispatch(showFocusOverlay());
+  dialogRef.close();
+});
+```
+
+## 🔧 Debugging & Testing
+
+### **Common Test Failures**
+
+- **Signal Mocking**: Always mock signal functions with `jasmine.createSpy()`
+- **TypeScript Errors**: Use `isRunning()` not `isRunning` for signal calls
+- **Effect Testing**: Mock store selectors properly for effects
+
+### **Build Issues**
+
+- **CocoaPods Encoding**: Always prefix with `export LANG=en_US.UTF-8`
+- **File Quality**: Run `npm run checkFile <filepath>` after every edit
+- **Test Failures**: Check if service mocks include all required methods
+
+## 🔄 Real-World Development Workflow
+
+### **Feature Development Process**
+
+1. **Plan**: Identify NgRx actions needed, component changes, service updates
+2. **Implement**: Start with actions/reducers, then effects, finally components
+3. **Test**: Mock all signal functions, test component interactions
+4. **Debug**: Use browser dev tools, check console for signal errors
+5. **Deploy**: Run `npm run checkFile`, sync to iOS, test in simulator
+
+### **Common Patterns We Learned**
+
+- **Auto-Task Creation**: Effects detect no-tasks → open dialog → listen for creation → start focus mode
+- **Cycle Management**: Increment on skip-to-break, decrement on skip-to-work, reset on completion
+- **Confetti Integration**: Service injection → multiple origins → timing with state updates
+- **Button State Management**: Signal-based dynamic icons and tooltips
+
+### **iOS-Specific Considerations**
+
+- **Touch Interactions**: Larger touch targets, proper spacing for fingers
+- **Safe Areas**: Always use `env(safe-area-inset-*)` for notches/Dynamic Island
+- **Performance**: Signals are more efficient than observables for UI updates
+- **Testing**: Mock all injected services, especially signal-based ones
+
 ## 📊 Current Customizations
 
 - **Welcome Banner**: "Hi, Antonio! What will you do Today?" in work-view component
