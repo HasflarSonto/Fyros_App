@@ -37,3 +37,39 @@ body.isDisableAnimations {
     animation: none !important;
   }
 }
+
+// Custom button color overrides
+.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary,
+button[color='primary'],
+.e2e-add-task-submit,
+.e2e-finish-day,
+.start-task-btn,
+.task-done-btn,
+.finish-btn {
+  background-color: #64757dff !important;
+  color: white !important;
+}
+
+.mat-primary .mat-button-focus-overlay,
+.mat-flat-button.mat-primary .mat-button-focus-overlay,
+.mat-raised-button.mat-primary .mat-button-focus-overlay {
+  background-color: #64757dff !important;
+}
+
+.mat-primary:hover,
+.mat-flat-button.mat-primary:hover,
+.mat-raised-button.mat-primary:hover,
+.mat-fab.mat-primary:hover,
+.mat-mini-fab.mat-primary:hover,
+button[color='primary']:hover,
+.e2e-add-task-submit:hover,
+.e2e-finish-day:hover,
+.start-task-btn:hover,
+.task-done-btn:hover,
+.finish-btn:hover {
+  background-color: #5a6b73ff !important;
+}

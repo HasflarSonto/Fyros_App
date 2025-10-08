@@ -121,6 +121,12 @@
   --c-warn: var(--palette-warn-500);
   --c-contrast: var(--palette-primary-contrast-500);
 
+  // Custom button colors override
+  --palette-primary-500: #64757dff;
+  --palette-primary-600: #5a6b73ff;
+  --palette-primary-400: #6e7f87ff;
+  --palette-primary-300: #78898fff;
+
   // ===============================
   // ANIMATION & TRANSITIONS
   // ===============================
