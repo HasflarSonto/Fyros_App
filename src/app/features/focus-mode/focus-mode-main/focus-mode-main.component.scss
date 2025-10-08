@@ -89,7 +89,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px; /* Reduced from 12px to 8px */
   margin: var(--s);
   margin-top: var(--s2);
   margin-bottom: var(--s2);
@@ -126,8 +126,8 @@
   }
 
   .task-check-btn {
-    width: 40px !important;
-    height: 40px !important;
+    width: 44px !important; /* Increased from 40px to 44px */
+    height: 44px !important; /* Increased from 40px to 44px */
     border-radius: 50%;
     background-color: transparent;
     color: #809076ff;
@@ -145,9 +145,9 @@
     }
 
     mat-icon {
-      font-size: 20px !important;
-      width: 20px !important;
-      height: 20px !important;
+      font-size: 22px !important; /* Increased from 20px to 22px */
+      width: 22px !important; /* Increased from 20px to 22px */
+      height: 22px !important; /* Increased from 20px to 22px */
     }
   }
 }
