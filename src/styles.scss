@@ -73,3 +73,30 @@ button[color='primary']:hover,
 .finish-btn:hover {
   background-color: #7a8570ff !important;
 }
+
+// Global font-family override for all elements including Material Design components
+*,
+button,
+input,
+textarea,
+select,
+.mat-typography,
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-flat-button,
+.mat-mdc-icon-button,
+.mat-mdc-fab,
+.mat-mdc-mini-fab,
+.mdc-button__label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+a {
+  font-family: 'Roboto Mono', monospace !important;
+}
