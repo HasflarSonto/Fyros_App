@@ -136,6 +136,7 @@
   },
   "dependencies": {
     "@capacitor/ios": "^7.4.3",
+    "@fontsource/roboto-mono": "^5.2.8",
     "dotenv": "^17.2.3",
     "electron-dl": "^3.5.2",
     "electron-localshortcut": "^3.2.1",
