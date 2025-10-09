@@ -227,9 +227,6 @@ export class FocusModeMainComponent implements OnDestroy {
     // Get current cycle before incrementing
     const currentCycle = this.focusModeService.currentCycle() ?? 1;
 
-    // Increment cycle when skipping a work session
-    this._store.dispatch(incrementCycle());
-
     // Check if we just completed all 4 work sessions
     if (currentCycle === 4) {
       this._celebrateCompletion();
@@ -242,8 +239,9 @@ export class FocusModeMainComponent implements OnDestroy {
     const pomodoroConfig = this.focusModeService.pomodoroConfig();
 
     const cyclesBeforeLong = pomodoroConfig?.cyclesBeforeLongerBreak ?? 4;
-    const nextCycle = currentCycle + 1;
-    const isLongBreak = nextCycle % cyclesBeforeLong === 0;
+    // Calculate break type based on current cycle (before incrementing)
+    // Long break should come after completing cycle 4 (so when currentCycle === 4)
+    const isLongBreak = currentCycle % cyclesBeforeLong === 0;
 
     const breakDuration = isLongBreak
       ? (pomodoroConfig?.longerBreakDuration ?? 15 * 60 * 1000) // 15 minutes
@@ -255,6 +253,9 @@ export class FocusModeMainComponent implements OnDestroy {
         isLongBreak,
       }),
     );
+
+    // Increment cycle AFTER determining break type
+    this._store.dispatch(incrementCycle());
   }
 
   skipToWork(): void {
