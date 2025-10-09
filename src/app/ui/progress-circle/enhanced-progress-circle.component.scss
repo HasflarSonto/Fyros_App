@@ -14,7 +14,7 @@
 
 .slider-value {
   font-family: 'Roboto Mono', monospace;
-  font-size: 20px;
+  font-size: 30px; /* 20px * 1.5 */
   font-weight: bold;
   fill: var(--text-color, black);
   dominant-baseline: central;
@@ -22,7 +22,7 @@
 
 .slider-label {
   font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
+  font-size: 24px; /* 16px * 1.5 */
   fill: var(--text-color-secondary, #555);
   dominant-baseline: central;
 }

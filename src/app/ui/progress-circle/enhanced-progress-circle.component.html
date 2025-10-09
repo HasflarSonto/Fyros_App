@@ -47,49 +47,49 @@
     </linearGradient>
   </defs>
 
-  <!-- Original Timer Circle Background -->
+  <!-- Original Timer Circle Background (scaled 1.5x) -->
   <circle
     cx="250"
     cy="250"
-    r="150"
+    r="225"
     fill="none"
     stroke="var(--progress-bg)"
-    stroke-width="20"
+    stroke-width="30"
   />
 
-  <!-- Original Timer Progress Circle (full circle) -->
+  <!-- Original Timer Progress Circle (scaled 1.5x) -->
   <path
     #progressCircle
     class="progress-circle"
-    [attr.d]="createArcPath(250, 250, 150, 0, 360)"
+    [attr.d]="createArcPath(250, 250, 225, 0, 360)"
     fill="none"
     stroke="#809076ff"
-    stroke-width="20"
+    stroke-width="30"
     stroke-linecap="round"
     stroke-dasharray="0, 100"
   />
 
-  <!-- Left Arc (Focus) -->
+  <!-- Left Arc (Focus) - scaled 1.5x -->
   @if (leftMetric(); as left) {
     <path
-      [attr.d]="createArcPath(250, 250, 180, 200, 250)"
+      [attr.d]="createArcPath(250, 250, 270, 200, 250)"
       fill="none"
       stroke="url(#leftGradient)"
-      stroke-width="20"
+      stroke-width="30"
       stroke-linecap="round"
     />
 
-    <!-- Left thumb -->
+    <!-- Left thumb (scaled 1.5x) -->
     <circle
       [attr.cx]="getThumbPosition(left).x"
       [attr.cy]="getThumbPosition(left).y"
-      r="8"
+      r="12"
       fill="white"
       [attr.stroke]="left.color"
-      stroke-width="2"
+      stroke-width="3"
     />
 
-    <!-- Left value -->
+    <!-- Left value (scaled 1.5x) -->
     <text
       [attr.x]="getTextPosition(left).x"
       [attr.y]="getTextPosition(left).y"
@@ -99,7 +99,7 @@
       {{ left.value }}
     </text>
 
-    <!-- Left label -->
+    <!-- Left label (scaled 1.5x) -->
     <text
       [attr.x]="getLabelPosition(left).x"
       [attr.y]="getLabelPosition(left).y"
@@ -110,27 +110,27 @@
     </text>
   }
 
-  <!-- Right Arc (Tiredness) -->
+  <!-- Right Arc (Tiredness) - scaled 1.5x -->
   @if (rightMetric(); as right) {
     <path
-      [attr.d]="createArcPath(250, 250, 180, 110, 160)"
+      [attr.d]="createArcPath(250, 250, 270, 110, 160)"
       fill="none"
       stroke="url(#rightGradient)"
-      stroke-width="20"
+      stroke-width="30"
       stroke-linecap="round"
     />
 
-    <!-- Right thumb -->
+    <!-- Right thumb (scaled 1.5x) -->
     <circle
       [attr.cx]="getThumbPosition(right).x"
       [attr.cy]="getThumbPosition(right).y"
-      r="8"
+      r="12"
       fill="white"
       [attr.stroke]="right.color"
-      stroke-width="2"
+      stroke-width="3"
     />
 
-    <!-- Right value -->
+    <!-- Right value (scaled 1.5x) -->
     <text
       [attr.x]="getTextPosition(right).x"
       [attr.y]="getTextPosition(right).y"
@@ -140,7 +140,7 @@
       {{ right.value }}
     </text>
 
-    <!-- Right label -->
+    <!-- Right label (scaled 1.5x) -->
     <text
       [attr.x]="getLabelPosition(right).x"
       [attr.y]="getLabelPosition(right).y"

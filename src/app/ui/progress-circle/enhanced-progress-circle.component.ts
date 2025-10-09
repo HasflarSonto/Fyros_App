@@ -90,11 +90,11 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     return ['M', start.x, start.y, 'A', r, r, 0, largeArcFlag, 0, end.x, end.y].join(' ');
   }
 
-  // Get thumb position for side metrics
+  // Get thumb position for side metrics (scaled 1.5x)
   getThumbPosition(metric: SideMetric): { x: number; y: number } {
     const cx = 250;
     const cy = 250;
-    const radius = 180;
+    const radius = 270; // 180 * 1.5
 
     let middleAngle: number;
     if (metric.position === 'left') {
@@ -108,23 +108,23 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     return this.polarToCartesian(cx, cy, radius, middleAngle);
   }
 
-  // Get text position for side metrics
+  // Get text position for side metrics (scaled 1.5x)
   getTextPosition(metric: SideMetric): { x: number; y: number } {
     const thumbPos = this.getThumbPosition(metric);
-    const offsetX = metric.position === 'left' ? -15 : 15;
+    const offsetX = metric.position === 'left' ? -22.5 : 22.5; // 15 * 1.5
     return {
       x: thumbPos.x + offsetX,
-      y: thumbPos.y + 10,
+      y: thumbPos.y + 15, // 10 * 1.5
     };
   }
 
-  // Get label position for side metrics
+  // Get label position for side metrics (scaled 1.5x)
   getLabelPosition(metric: SideMetric): { x: number; y: number } {
     const thumbPos = this.getThumbPosition(metric);
-    const offsetX = metric.position === 'left' ? -15 : 15;
+    const offsetX = metric.position === 'left' ? -22.5 : 22.5; // 15 * 1.5
     return {
       x: thumbPos.x + offsetX,
-      y: thumbPos.y + 35,
+      y: thumbPos.y + 52.5, // 35 * 1.5
     };
   }
 }
