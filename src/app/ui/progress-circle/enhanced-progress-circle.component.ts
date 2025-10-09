@@ -29,6 +29,7 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
   progress = input<number>(0);
   leftMetric = input<SideMetric | null>(null);
   rightMetric = input<SideMetric | null>(null);
+  isBreakMode = input<boolean>(false);
 
   readonly progressCircle = viewChild<ElementRef>('progressCircle');
 
