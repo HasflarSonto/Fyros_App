@@ -39,12 +39,12 @@ h2 {
 
 .work-view-header {
   padding: var(--s-half);
+
   position: relative;
   min-height: var(--bar-height-small);
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-20px); // Move up by 20px
   @include mq(xs) {
     padding: var(--s2) 0;
   }
