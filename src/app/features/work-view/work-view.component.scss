@@ -2,6 +2,7 @@
 
 :host {
   overflow: hidden !important;
+  transform: translateY(-20px); /* Move entire page up by 20px */
 }
 
 add-task-bar {

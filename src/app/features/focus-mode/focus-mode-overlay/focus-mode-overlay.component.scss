@@ -50,7 +50,7 @@ main {
 
 .close-btn {
   position: absolute;
-  top: max(env(safe-area-inset-top, 0px), 90px); /* Move down by 30px from 60px */
+  top: max(env(safe-area-inset-top, 0px), 60px); /* Tiny bit up from 70px */
   right: var(--s);
   width: 56px;
   height: 56px;
@@ -90,10 +90,7 @@ main {
 
 .focus-mode-select-mode {
   margin-bottom: auto;
-  margin-top: max(
-    env(safe-area-inset-top, 0px),
-    130px
-  ); /* Move down by 30px from 100px */
+  margin-top: max(env(safe-area-inset-top, 0px), 100px); /* Slightly up from 120px */
 }
 
 focus-mode-task-selection,
