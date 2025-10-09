@@ -2,7 +2,6 @@
 
 :host {
   overflow: hidden !important;
-  transform: translateY(-20px); /* Move entire page up by 20px */
 }
 
 add-task-bar {
@@ -31,6 +30,7 @@ h2 {
   left: 0;
   transition: var(--transition-enter);
   overflow: hidden;
+  transform: translateY(-30px); /* Move entire page up by 30px */
 
   &.isFadeOut {
     transition: var(--transition-duration-xs) var(--ani-standard-timing);
