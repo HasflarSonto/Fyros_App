@@ -253,8 +253,8 @@
       "CONTINUE_SESSION": "Oturumu devam ettir",
       "LONG_BREAK": "Uzun Mola",
       "SHORT_BREAK": "Kısa Mola",
-      "LONG_BREAK_TITLE": "Uzun Mola - Döngü {{cycle}}",
-      "SHORT_BREAK_TITLE": "Kısa Mola - Döngü {{cycle}}"
+      "LONG_BREAK_TITLE": "Uzun Mola",
+      "SHORT_BREAK_TITLE": "Kısa Mola"
     },
     "GITEA": {
       "DIALOG_INITIAL": {
