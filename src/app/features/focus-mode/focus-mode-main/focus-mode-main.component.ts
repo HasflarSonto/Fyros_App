@@ -36,7 +36,10 @@ import { SimpleCounterService } from '../../simple-counter/simple-counter.servic
 import { SimpleCounter } from '../../simple-counter/simple-counter.model';
 import { ICAL_TYPE } from '../../issue/issue.const';
 import { TaskTitleComponent } from '../../../ui/task-title/task-title.component';
-import { ProgressCircleComponent } from '../../../ui/progress-circle/progress-circle.component';
+import {
+  EnhancedProgressCircleComponent,
+  SideMetric,
+} from '../../../ui/progress-circle/enhanced-progress-circle.component';
 import { MatIconAnchor, MatIconButton, MatMiniFabButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
@@ -61,7 +64,7 @@ import { ConfettiService } from '../../../core/confetti/confetti.service';
   animations: [expandAnimation, fadeAnimation, slideInOutFromBottomAni],
   imports: [
     TaskTitleComponent,
-    ProgressCircleComponent,
+    EnhancedProgressCircleComponent,
     BreathingDotComponent,
     MatIconButton,
     MatTooltip,
@@ -305,6 +308,46 @@ export class FocusModeMainComponent implements OnDestroy {
       particleCount,
       origin: { x: 0.8, y: 0.8 },
     });
+  }
+
+  // Methods for enhanced progress circle metrics
+  getFocusMetric(): SideMetric | null {
+    // Calculate focus level based on current session progress and cycle
+    const progress = this.focusModeService.progress() || 0;
+    const cycle = this.focusModeService.currentCycle() || 1;
+
+    // Focus decreases as cycles progress and increases with session progress
+    const cyclePenalty = (cycle - 1) * 15;
+    const baseFocus = 100 - cyclePenalty; // Decrease by 15 per cycle
+    const sessionBonus = Math.floor(progress / 10); // Bonus based on progress
+
+    const focusValue = Math.max(20, Math.min(100, baseFocus + sessionBonus));
+
+    return {
+      value: focusValue,
+      label: 'Focus',
+      color: '#809076ff',
+      position: 'left' as const,
+    };
+  }
+
+  getTirednessMetric(): SideMetric | null {
+    // Calculate tiredness level based on cycles and time worked
+    const cycle = this.focusModeService.currentCycle() || 1;
+    const timeElapsed = this.focusModeService.timeElapsed() || 0;
+
+    // Tiredness increases with cycles and time
+    const cycleTiredness = (cycle - 1) * 20; // Increase by 20 per cycle
+    const timeTiredness = Math.floor(timeElapsed / (25 * 60 * 1000)) * 10; // Increase by 10 per 25min session
+
+    const tirednessValue = Math.max(0, Math.min(100, cycleTiredness + timeTiredness));
+
+    return {
+      value: tirednessValue,
+      label: 'Tiredness',
+      color: '#6a8591ff',
+      position: 'right' as const,
+    };
   }
 
   protected readonly ICAL_TYPE = ICAL_TYPE;

@@ -19,22 +19,15 @@
   <!-- Main Timer Circle -->
   <div class="progress-wrapper">
     @if (isCountDown) {
-      <progress-circle [progress]="focusModeService.progress()"></progress-circle>
+      <enhanced-progress-circle
+        [progress]="focusModeService.progress()"
+        [timeDisplay]="focusModeService.timeRemaining() | msToMinuteClockString"
+        [leftMetric]="getFocusMetric()"
+        [rightMetric]="getTirednessMetric()"
+      ></enhanced-progress-circle>
     } @else {
       <breathing-dot></breathing-dot>
     }
-    <div class="progress-label-wrapper">
-      <div
-        class="focus-time"
-        [title]="T.F.FOCUS_MODE.FOCUS_TIME_TOOLTIP | translate"
-      >
-        @if (isCountDown) {
-          {{ focusModeService.timeRemaining() | msToMinuteClockString }}
-        } @else {
-          {{ timeElapsed() | msToMinuteClockString }}
-        }
-      </div>
-    </div>
   </div>
 
   <!-- Task Title Below Timer -->

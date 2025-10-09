@@ -1,0 +1,162 @@
+<svg
+  viewBox="0 0 500 500"
+  xmlns="http://www.w3.org/2000/svg"
+  class="enhanced-circle"
+>
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient
+      id="leftGradient"
+      x1="0%"
+      y1="0%"
+      x2="0%"
+      y2="100%"
+    >
+      <stop
+        offset="0%"
+        style="stop-color: #e6d2a6ff; stop-opacity: 1"
+      />
+      <stop
+        offset="10%"
+        style="stop-color: #e6d2a6ff; stop-opacity: 1"
+      />
+      <stop
+        offset="100%"
+        style="stop-color: #809076ff; stop-opacity: 1"
+      />
+    </linearGradient>
+    <linearGradient
+      id="rightGradient"
+      x1="0%"
+      y1="0%"
+      x2="0%"
+      y2="100%"
+    >
+      <stop
+        offset="0%"
+        style="stop-color: #e6d2a6ff; stop-opacity: 1"
+      />
+      <stop
+        offset="10%"
+        style="stop-color: #e6d2a6ff; stop-opacity: 1"
+      />
+      <stop
+        offset="100%"
+        style="stop-color: #6a8591ff; stop-opacity: 1"
+      />
+    </linearGradient>
+  </defs>
+
+  <!-- Main circular progress ring background -->
+  <circle
+    cx="250"
+    cy="250"
+    r="150"
+    fill="none"
+    stroke="#E5E5E5"
+    stroke-width="20"
+  />
+
+  <!-- Main progress ring (12 to 3 o'clock) -->
+  <path
+    #progressCircle
+    class="progress-circle"
+    [attr.d]="createArcPath(250, 250, 150, 0, 90)"
+    fill="none"
+    stroke="#809076ff"
+    stroke-width="20"
+    stroke-linecap="round"
+    stroke-dasharray="0, 100"
+  />
+
+  <!-- Left Arc (Focus) -->
+  @if (leftMetric(); as left) {
+    <path
+      [attr.d]="createArcPath(250, 250, 180, 200, 250)"
+      fill="none"
+      stroke="url(#leftGradient)"
+      stroke-width="20"
+      stroke-linecap="round"
+    />
+
+    <!-- Left thumb -->
+    <circle
+      [attr.cx]="getThumbPosition(left).x"
+      [attr.cy]="getThumbPosition(left).y"
+      r="8"
+      fill="white"
+      [attr.stroke]="left.color"
+      stroke-width="2"
+    />
+
+    <!-- Left value -->
+    <text
+      [attr.x]="getTextPosition(left).x"
+      [attr.y]="getTextPosition(left).y"
+      class="slider-value"
+      text-anchor="end"
+    >
+      {{ left.value }}
+    </text>
+
+    <!-- Left label -->
+    <text
+      [attr.x]="getLabelPosition(left).x"
+      [attr.y]="getLabelPosition(left).y"
+      class="slider-label"
+      text-anchor="end"
+    >
+      {{ left.label }}
+    </text>
+  }
+
+  <!-- Right Arc (Tiredness) -->
+  @if (rightMetric(); as right) {
+    <path
+      [attr.d]="createArcPath(250, 250, 180, 110, 160)"
+      fill="none"
+      stroke="url(#rightGradient)"
+      stroke-width="20"
+      stroke-linecap="round"
+    />
+
+    <!-- Right thumb -->
+    <circle
+      [attr.cx]="getThumbPosition(right).x"
+      [attr.cy]="getThumbPosition(right).y"
+      r="8"
+      fill="white"
+      [attr.stroke]="right.color"
+      stroke-width="2"
+    />
+
+    <!-- Right value -->
+    <text
+      [attr.x]="getTextPosition(right).x"
+      [attr.y]="getTextPosition(right).y"
+      class="slider-value"
+      text-anchor="start"
+    >
+      {{ right.value }}
+    </text>
+
+    <!-- Right label -->
+    <text
+      [attr.x]="getLabelPosition(right).x"
+      [attr.y]="getLabelPosition(right).y"
+      class="slider-label"
+      text-anchor="start"
+    >
+      {{ right.label }}
+    </text>
+  }
+
+  <!-- Central clock display -->
+  <text
+    x="250"
+    y="250"
+    class="clock-text"
+  >
+    {{ timeDisplay() }}
+  </text>
+</svg>

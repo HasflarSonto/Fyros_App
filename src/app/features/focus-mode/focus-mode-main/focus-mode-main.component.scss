@@ -180,19 +180,6 @@ breathing-dot {
   }
 }
 
-.progress-label-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-
-  .focus-time {
-    font-size: 28px;
-    font-weight: bold;
-  }
-}
-
 // Main Control Buttons
 .main-controls {
   display: flex;
