@@ -50,7 +50,7 @@ main {
 
 .close-btn {
   position: absolute;
-  top: var(--s);
+  top: max(env(safe-area-inset-top, 0px), 50px); /* Follow developer docs pattern */
   right: var(--s);
   width: 56px;
   height: 56px;
@@ -90,7 +90,10 @@ main {
 
 .focus-mode-select-mode {
   margin-bottom: auto;
-  margin-top: 50px; /* Move navigation bar down by 50px */
+  margin-top: max(
+    env(safe-area-inset-top, 0px),
+    50px
+  ); /* Follow developer docs pattern */
 }
 
 focus-mode-task-selection,
