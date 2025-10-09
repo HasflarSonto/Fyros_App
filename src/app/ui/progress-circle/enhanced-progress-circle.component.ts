@@ -109,7 +109,7 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
   // Get thumb position for side metrics
   getThumbPosition(metric: SideMetric): { x: number; y: number } {
     const cx = 250;
-    const cy = 250;
+    const cy = this.isBreakMode() ? 280 : 250; // Adjust center Y for break mode
     const radius = 216; // 180 * 1.2
 
     let angle: number;
@@ -179,7 +179,7 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
   // Get label position for side metrics (below the arcs)
   getLabelPosition(metric: SideMetric): { x: number; y: number } {
     const cx = 250;
-    const cy = 250;
+    const cy = this.isBreakMode() ? 280 : 250; // Adjust center Y for break mode
 
     // Position labels slightly higher but still well below the arcs
     if (metric.position === 'left') {
