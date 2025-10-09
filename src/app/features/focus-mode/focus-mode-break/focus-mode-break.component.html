@@ -9,18 +9,16 @@
   </h1>
 
   <div class="timer-container">
-    <!-- Both short and long breaks use the same rounded square timer -->
-    <div class="break-timer">
-      <div class="timer-text">
-        {{ remainingTime() | msToMinuteClockString }}
-      </div>
-    </div>
-
-    <!-- Add enhanced progress circle for Relaxation and Meditation arcs -->
+    <!-- Enhanced progress circle with Relaxation and Meditation arcs -->
     <enhanced-progress-circle
       [leftMetric]="getRelaxationMetric()"
       [rightMetric]="getMeditationMetric()"
     ></enhanced-progress-circle>
+
+    <!-- Time display overlay on the enhanced progress circle -->
+    <div class="time-overlay">
+      {{ remainingTime() | msToMinuteClockString }}
+    </div>
   </div>
 
   <task-tracking-info></task-tracking-info>
