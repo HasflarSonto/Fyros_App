@@ -134,11 +134,37 @@ xcrun simctl erase all
 - **Timer Logic**: Handled in effects with proper state management
 - **UI Updates**: Cycle dots, progress circles, control buttons
 
-### **Task Management**
+### **Advanced UI Components**
 
-- **Service**: `src/app/features/tasks/task.service.ts` - Core task operations
-- **Effects**: `src/app/features/tasks/store/task-internal.effects.ts` - Auto-start logic
-- **Auto-Creation**: Dialog integration for seamless task creation
+- **Enhanced Progress Circle**: `src/app/ui/progress-circle/enhanced-progress-circle.component.*`
+
+  - Conditional rendering for work vs break modes
+  - Side arcs for Focus/Tiredness and Relaxation/Meditation metrics
+  - Dynamic thumb positioning based on metric values
+  - SVG-based circular progress with gradient fills
+
+- **Break Mode Integration**: `src/app/features/focus-mode/focus-mode-break/`
+
+  - Solid green circle background for breaks
+  - Time overlay positioned on enhanced progress circle
+  - Random metric variation with proper cleanup
+
+- **Task Selection UI**: `src/app/features/focus-mode/focus-mode-task-selection/`
+  - Transform-based positioning for better visual balance
+  - Integration with enhanced progress circle for running sessions
+
+### **Pomodoro Cycle Management**
+
+- **Cycle Logic**: Proper increment/decrement with minimum bounds
+- **Break Types**: Short breaks (5min) vs Long breaks (15min) after 4 cycles
+- **Confetti Integration**: Celebration animation on cycle completion
+- **State Persistence**: Cycle tracking across app sessions
+
+### **Font and Styling Integration**
+
+- **Roboto Mono**: Applied to all text elements while preserving Material Icons
+- **CSS Overrides**: Using `!important` to override Material Design theme
+- **Responsive Design**: Proper scaling and positioning for different screen sizes
 
 ## 🚨 Critical Development Gotchas
 
@@ -213,6 +239,11 @@ dialogRef.componentInstance.afterTaskAdd.subscribe(({ taskId }) => {
 - **Cycle Management**: Increment on skip-to-break, decrement on skip-to-work, reset on completion
 - **Confetti Integration**: Service injection → multiple origins → timing with state updates
 - **Button State Management**: Signal-based dynamic icons and tooltips
+- **Conditional Rendering**: Using `@if` blocks for work vs break mode differences
+- **Transform Positioning**: Using `translateY()` for precise UI element positioning
+- **Random Metric Variation**: `setInterval` with proper cleanup in `ngOnDestroy`
+- **SVG Arc Generation**: Polar to Cartesian conversion for dynamic arc positioning
+- **Component Communication**: Input properties for conditional behavior (`isBreakMode`)
 
 ### **iOS-Specific Considerations**
 
@@ -254,6 +285,12 @@ button[color='primary']:hover {
 - **Task Creation**: Auto-prompt when no tasks exist + immediate focus mode start
 - **iOS Safe Area**: Proper spacing for iPhone rounded corners and Dynamic Island
 - **Check Marks**: Visible task completion buttons on main pages
+- **Title Card**: Solid green background (`#809076ff`) with full horizontal width
+- **Primary Buttons**: Custom green color (`#8c987cff`) with hover states
+- **Font**: Roboto Mono for all text elements, Material Icons preserved
+- **Pomodoro Timer**: Enhanced with Focus/Tiredness arcs and dynamic metrics
+- **Break Screen**: Solid green circle with Relaxation/Meditation arcs
+- **UI Positioning**: Optimized spacing for better visual hierarchy
 
 ## 🔧 Essential Commands
 
