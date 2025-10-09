@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-20px); // Move up by 20px
+  transform: translateY(-10px); // Move up by 10px
 
   .time-overlay {
     position: absolute;
@@ -30,24 +30,24 @@
 }
 
 .task-tracking-info {
-  transform: translateY(-20px); // Move up by 20px
+  transform: translateY(-10px); // Move up by 10px
 }
 
 .break-message {
   font-size: 1.1rem;
   opacity: 0.8;
   margin: 0;
-  transform: translateY(-20px); // Move up by 20px
+  transform: translateY(-10px); // Move up by 10px
 }
 
 .button-row {
   display: flex;
   gap: 1rem;
   align-items: center;
-  transform: translateY(-20px); // Move up by 20px
+  transform: translateY(-10px); // Move up by 10px
 }
 
 // Move the skip button up as well
 button[mat-stroked-button] {
-  transform: translateY(-20px); // Move up by 20px
+  transform: translateY(-10px); // Move up by 10px
 }
