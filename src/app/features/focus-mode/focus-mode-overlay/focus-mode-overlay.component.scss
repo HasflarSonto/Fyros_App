@@ -38,7 +38,7 @@ main {
   flex-direction: column;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  margin-top: 0; /* Removed top margin to center content vertically */
+  margin-top: -20px; /* Move everything up by 20px */
   margin-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
 }
 
