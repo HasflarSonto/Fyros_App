@@ -50,7 +50,7 @@ main {
 
 .close-btn {
   position: absolute;
-  top: max(env(safe-area-inset-top, 0px), 50px); /* Follow developer docs pattern */
+  top: max(env(safe-area-inset-top, 0px), 200px); /* Align with play button position */
   right: var(--s);
   width: 56px;
   height: 56px;
@@ -92,8 +92,8 @@ main {
   margin-bottom: auto;
   margin-top: max(
     env(safe-area-inset-top, 0px),
-    50px
-  ); /* Follow developer docs pattern */
+    120px
+  ); /* Move navigation bar down significantly more */
 }
 
 focus-mode-task-selection,
