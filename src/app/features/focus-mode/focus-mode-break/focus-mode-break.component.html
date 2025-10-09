@@ -9,28 +9,12 @@
   </h1>
 
   <div class="timer-container">
-    @if (focusModeService.isBreakLong()) {
-      <!-- Long break: keep the blue circle progress spinner -->
-      <mat-progress-spinner
-        mode="determinate"
-        [value]="progressPercentage()"
-        diameter="160"
-        strokeWidth="6"
-      >
-      </mat-progress-spinner>
-    } @else {
-      <!-- Short break: green rounded background, no blue circle -->
-      <div class="short-break-timer">
-        <div class="timer-text">
-          {{ remainingTime() | msToMinuteClockString }}
-        </div>
-      </div>
-    }
-    @if (focusModeService.isBreakLong()) {
+    <!-- Both short and long breaks use the same rounded square timer -->
+    <div class="break-timer">
       <div class="timer-text">
-        {{ remainingTime() | msToClockString: true }}
+        {{ remainingTime() | msToMinuteClockString }}
       </div>
-    }
+    </div>
   </div>
 
   <task-tracking-info></task-tracking-info>

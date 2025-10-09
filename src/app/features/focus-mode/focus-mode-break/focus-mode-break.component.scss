@@ -20,11 +20,11 @@
     font-weight: 500;
   }
 
-  .short-break-timer {
+  .break-timer {
     width: 200px;
     height: 200px;
     background-color: #809076ff;
-    border-radius: 50%;
+    border-radius: 24px; /* Changed from 50% (circle) to 24px (rounded square) */
     display: flex;
     align-items: center;
     justify-content: center;
