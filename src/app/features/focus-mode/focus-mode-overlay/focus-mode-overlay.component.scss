@@ -50,10 +50,7 @@ main {
 
 .close-btn {
   position: absolute;
-  top: max(
-    env(safe-area-inset-top, 0px),
-    70px
-  ); /* Back closer to original, slightly down */
+  top: max(env(safe-area-inset-top, 0px), 60px); /* Tiny bit up from 70px */
   right: var(--s);
   width: 56px;
   height: 56px;
