@@ -184,12 +184,12 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     if (metric.position === 'left') {
       return {
         x: cx - 120, // Much more spread out to the left
-        y: cy + 220, // Slightly higher from 250px
+        y: cy + 240, // Just a tiny bit higher from 250px
       };
     } else {
       return {
         x: cx + 120, // Much more spread out to the right
-        y: cy + 220, // Slightly higher from 250px
+        y: cy + 240, // Just a tiny bit higher from 250px
       };
     }
   }
