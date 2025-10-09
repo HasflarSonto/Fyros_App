@@ -47,21 +47,21 @@
     </linearGradient>
   </defs>
 
-  <!-- Main circular progress ring background -->
+  <!-- Original Timer Circle Background -->
   <circle
     cx="250"
     cy="250"
     r="150"
     fill="none"
-    stroke="#E5E5E5"
+    stroke="var(--progress-bg)"
     stroke-width="20"
   />
 
-  <!-- Main progress ring (12 to 3 o'clock) -->
+  <!-- Original Timer Progress Circle (full circle) -->
   <path
     #progressCircle
     class="progress-circle"
-    [attr.d]="createArcPath(250, 250, 150, 0, 90)"
+    [attr.d]="createArcPath(250, 250, 150, 0, 360)"
     fill="none"
     stroke="#809076ff"
     stroke-width="20"
@@ -150,13 +150,4 @@
       {{ right.label }}
     </text>
   }
-
-  <!-- Central clock display -->
-  <text
-    x="250"
-    y="250"
-    class="clock-text"
-  >
-    {{ timeDisplay() }}
-  </text>
 </svg>

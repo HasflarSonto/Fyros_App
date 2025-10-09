@@ -7,31 +7,22 @@
   height: 100%;
 }
 
-.clock-text {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 48px;
-  font-weight: bold;
-  fill: black;
-  text-anchor: middle;
-  dominant-baseline: central;
+.progress-circle {
+  transition: all 1s ease-out;
+  stroke-dashoffset: 0;
 }
 
 .slider-value {
   font-family: 'Roboto Mono', monospace;
   font-size: 20px;
   font-weight: bold;
-  fill: black;
+  fill: var(--text-color, black);
   dominant-baseline: central;
 }
 
 .slider-label {
   font-family: 'Roboto Mono', monospace;
   font-size: 16px;
-  fill: #555;
+  fill: var(--text-color-secondary, #555);
   dominant-baseline: central;
-}
-
-.progress-circle {
-  transition: all 1s ease-out;
-  stroke-dashoffset: 0;
 }

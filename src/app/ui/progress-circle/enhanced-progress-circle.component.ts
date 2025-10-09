@@ -27,7 +27,6 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
   private readonly _renderer = inject(Renderer2);
 
   progress = input<number>(0);
-  timeDisplay = input<string>('00:00');
   leftMetric = input<SideMetric | null>(null);
   rightMetric = input<SideMetric | null>(null);
 
