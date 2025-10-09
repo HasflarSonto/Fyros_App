@@ -16,53 +16,12 @@
     </div>
   }
 
-  <!-- Main Timer Circle -->
+  <!-- Main Timer Display -->
   <div class="progress-wrapper">
-    @if (isCountDown) {
-      <progress-circle [progress]="focusModeService.progress()"></progress-circle>
-    } @else {
+    @if (!isCountDown) {
+      <!-- Only show breathing dot for breaks (no work session progress circle) -->
       <breathing-dot></breathing-dot>
     }
-
-    <!-- Quarter Circle Rings -->
-    <div class="quarter-rings">
-      <!-- Bottom Left Quarter Ring -->
-      <div class="quarter-ring quarter-ring-left">
-        <svg
-          class="quarter-ring-svg"
-          viewBox="0 0 100 100"
-        >
-          <path
-            class="quarter-ring-path"
-            d="M 50 50 L 50 20 A 30 30 0 0 1 20 50 Z"
-            fill="none"
-            stroke="#64757dff"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
-        </svg>
-        <div class="quarter-ring-label">Focus</div>
-      </div>
-
-      <!-- Bottom Right Quarter Ring -->
-      <div class="quarter-ring quarter-ring-right">
-        <svg
-          class="quarter-ring-svg"
-          viewBox="0 0 100 100"
-        >
-          <path
-            class="quarter-ring-path"
-            d="M 50 50 L 80 50 A 30 30 0 0 1 50 20 Z"
-            fill="none"
-            stroke="#64757dff"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
-        </svg>
-        <div class="quarter-ring-label">Break</div>
-      </div>
-    </div>
-
     <div class="progress-label-wrapper">
       <div
         class="focus-time"
