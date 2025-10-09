@@ -19,6 +19,25 @@
     font-size: 1.8rem;
     font-weight: 500;
   }
+
+  .short-break-timer {
+    width: 200px;
+    height: 200px;
+    background-color: #809076ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(128, 144, 118, 0.3);
+
+    .timer-text {
+      position: static;
+      color: white;
+      font-size: 2.2rem;
+      font-weight: 600;
+      font-family: 'Roboto Mono', monospace;
+    }
+  }
 }
 
 .break-message {

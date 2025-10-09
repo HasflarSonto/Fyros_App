@@ -16,10 +16,11 @@
     </div>
   }
 
-  <!-- Main Timer Display -->
+  <!-- Main Timer Circle -->
   <div class="progress-wrapper">
-    @if (!isCountDown) {
-      <!-- Only show breathing dot for breaks (no work session progress circle) -->
+    @if (isCountDown) {
+      <progress-circle [progress]="focusModeService.progress()"></progress-circle>
+    } @else {
       <breathing-dot></breathing-dot>
     }
     <div class="progress-label-wrapper">
