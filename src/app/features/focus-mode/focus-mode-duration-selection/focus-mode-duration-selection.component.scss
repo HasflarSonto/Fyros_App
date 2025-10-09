@@ -14,6 +14,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateY(-30px); // Move everything up by 30px
 }
 
 h1 {
