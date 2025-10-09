@@ -121,7 +121,7 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
       const normalizedValue = (metric.value - 30) / valueRange; // 0 to 1
       const angleRange = 50;
       const angleOffset = normalizedValue * angleRange;
-      angle = 250 - angleOffset; // 250° to 200°
+      angle = 200 + angleOffset; // 200° to 250° (corrected direction)
     } else {
       // Tiredness arc: 110° to 160° (50° range)
       // Map value 10-30 to angle 110°-160°
@@ -147,13 +147,24 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     };
   }
 
-  // Get label position for side metrics
+  // Get label position for side metrics (below the arcs)
   getLabelPosition(metric: SideMetric): { x: number; y: number } {
-    const thumbPos = this.getThumbPosition(metric);
-    const offsetX = metric.position === 'left' ? -18 : 18; // 15 * 1.2
-    return {
-      x: thumbPos.x + offsetX,
-      y: thumbPos.y + 42, // 35 * 1.2
-    };
+    const cx = 250;
+    const cy = 250;
+
+    // Position labels below the arcs, not relative to thumbs
+    if (metric.position === 'left') {
+      // Left arc label below the arc
+      return {
+        x: cx - 50, // Left side
+        y: cy + 120, // Below the arc
+      };
+    } else {
+      // Right arc label below the arc
+      return {
+        x: cx + 50, // Right side
+        y: cy + 120, // Below the arc
+      };
+    }
   }
 }
