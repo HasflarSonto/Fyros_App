@@ -30,7 +30,6 @@ h2 {
   left: 0;
   transition: var(--transition-enter);
   overflow: hidden;
-  transform: translateY(-30px); /* Move entire page up by 30px */
 
   &.isFadeOut {
     transition: var(--transition-duration-xs) var(--ani-standard-timing);
@@ -40,12 +39,12 @@ h2 {
 
 .work-view-header {
   padding: var(--s-half);
-
   position: relative;
   min-height: var(--bar-height-small);
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateY(-20px); // Move up by 20px
   @include mq(xs) {
     padding: var(--s2) 0;
   }
