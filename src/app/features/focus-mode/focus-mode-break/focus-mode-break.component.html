@@ -15,6 +15,12 @@
         {{ remainingTime() | msToMinuteClockString }}
       </div>
     </div>
+
+    <!-- Add enhanced progress circle for Relaxation and Meditation arcs -->
+    <enhanced-progress-circle
+      [leftMetric]="getRelaxationMetric()"
+      [rightMetric]="getMeditationMetric()"
+    ></enhanced-progress-circle>
   </div>
 
   <task-tracking-info></task-tracking-info>

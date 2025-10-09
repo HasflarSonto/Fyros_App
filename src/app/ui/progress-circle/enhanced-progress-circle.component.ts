@@ -180,16 +180,16 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     const cx = 250;
     const cy = 250;
 
-    // Position labels further below the arcs and more spread out
+    // Position labels much further below the arcs and more spread out
     if (metric.position === 'left') {
       return {
-        x: cx - 80, // More spread out to the left
-        y: cy + 150, // Further down
+        x: cx - 120, // Much more spread out to the left
+        y: cy + 200, // Much further down
       };
     } else {
       return {
-        x: cx + 80, // More spread out to the right
-        y: cy + 150, // Further down
+        x: cx + 120, // Much more spread out to the right
+        y: cy + 200, // Much further down
       };
     }
   }
