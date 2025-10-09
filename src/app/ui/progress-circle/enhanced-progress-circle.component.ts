@@ -113,25 +113,53 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
 
     let angle: number;
     if (metric.position === 'left') {
-      // Focus arc: 200° to 250° (50° range)
-      // Map value 30-60 to angle 200°-250°
-      // When value is 60, angle is 200° (top)
-      // When value is 30, angle is 250° (bottom)
-      const valueRange = 60 - 30;
-      const normalizedValue = (metric.value - 30) / valueRange; // 0 to 1
-      const angleRange = 50;
-      const angleOffset = normalizedValue * angleRange;
-      angle = 200 + angleOffset; // 200° to 250° (corrected direction)
+      // Left arc: 200° to 250° (50° range)
+      if (metric.label === 'Focus') {
+        // Focus arc: Map value 30-60 to angle 200°-250°
+        // When value is 60, angle is 200° (top)
+        // When value is 30, angle is 250° (bottom)
+        const valueRange = 60 - 30;
+        const normalizedValue = (metric.value - 30) / valueRange; // 0 to 1
+        const angleRange = 50;
+        const angleOffset = normalizedValue * angleRange;
+        angle = 200 + angleOffset; // 200° to 250°
+      } else if (metric.label === 'Relaxation') {
+        // Relaxation arc: Map value 50-20 to angle 200°-250°
+        // When value is 50, angle is 200° (top)
+        // When value is 20, angle is 250° (bottom)
+        const valueRange = 50 - 20;
+        const normalizedValue = (metric.value - 20) / valueRange; // 0 to 1
+        const angleRange = 50;
+        const angleOffset = normalizedValue * angleRange;
+        angle = 200 + angleOffset; // 200° to 250°
+      } else {
+        // Default fallback
+        angle = 225;
+      }
     } else {
-      // Tiredness arc: 110° to 160° (50° range)
-      // Map value 10-30 to angle 110°-160°
-      // When value is 30, angle is 110° (top)
-      // When value is 10, angle is 160° (bottom)
-      const tirednessValueRange = 30 - 10;
-      const tirednessNormalizedValue = (metric.value - 10) / tirednessValueRange; // 0 to 1
-      const tirednessAngleRange = 50;
-      const tirednessAngleOffset = tirednessNormalizedValue * tirednessAngleRange;
-      angle = 160 - tirednessAngleOffset; // 160° to 110°
+      // Right arc: 110° to 160° (50° range)
+      if (metric.label === 'Tiredness') {
+        // Tiredness arc: Map value 10-30 to angle 110°-160°
+        // When value is 30, angle is 110° (top)
+        // When value is 10, angle is 160° (bottom)
+        const tirednessValueRange = 30 - 10;
+        const tirednessNormalizedValue = (metric.value - 10) / tirednessValueRange; // 0 to 1
+        const tirednessAngleRange = 50;
+        const tirednessAngleOffset = tirednessNormalizedValue * tirednessAngleRange;
+        angle = 160 - tirednessAngleOffset; // 160° to 110°
+      } else if (metric.label === 'Meditation') {
+        // Meditation arc: Map value 60-10 to angle 110°-160°
+        // When value is 60, angle is 110° (top)
+        // When value is 10, angle is 160° (bottom)
+        const meditationValueRange = 60 - 10;
+        const meditationNormalizedValue = (metric.value - 10) / meditationValueRange; // 0 to 1
+        const meditationAngleRange = 50;
+        const meditationAngleOffset = meditationNormalizedValue * meditationAngleRange;
+        angle = 160 - meditationAngleOffset; // 160° to 110°
+      } else {
+        // Default fallback
+        angle = 135;
+      }
     }
 
     return this.polarToCartesian(cx, cy, radius, angle);
@@ -152,18 +180,16 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     const cx = 250;
     const cy = 250;
 
-    // Position labels below the arcs, not relative to thumbs
+    // Position labels further below the arcs and more spread out
     if (metric.position === 'left') {
-      // Left arc label below the arc
       return {
-        x: cx - 50, // Left side
-        y: cy + 120, // Below the arc
+        x: cx - 80, // More spread out to the left
+        y: cy + 150, // Further down
       };
     } else {
-      // Right arc label below the arc
       return {
-        x: cx + 50, // Right side
-        y: cy + 120, // Below the arc
+        x: cx + 80, // More spread out to the right
+        y: cy + 150, // Further down
       };
     }
   }

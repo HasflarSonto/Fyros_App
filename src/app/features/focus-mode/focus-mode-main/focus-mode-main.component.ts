@@ -108,6 +108,8 @@ export class FocusModeMainComponent implements OnDestroy {
   // Random variation signals
   private readonly _focusValue = signal(45); // Start at middle of range
   private readonly _tirednessValue = signal(20); // Start at middle of range
+  private readonly _relaxationValue = signal(35); // Start at middle of range (50-20)
+  private readonly _meditationValue = signal(35); // Start at middle of range (60-10)
   private _variationInterval?: number;
 
   issueUrl$: Observable<string | null> = this.taskService.currentTask$.pipe(
@@ -157,6 +159,24 @@ export class FocusModeMainComponent implements OnDestroy {
       const tirednessChange = (Math.random() - 0.5) * 4; // ±2 variation
       const newTiredness = Math.max(10, Math.min(30, currentTiredness + tirednessChange));
       this._tirednessValue.set(Math.round(newTiredness));
+
+      // Random variation for Relaxation (50-20)
+      const currentRelaxation = this._relaxationValue();
+      const relaxationChange = (Math.random() - 0.5) * 6; // ±3 variation
+      const newRelaxation = Math.max(
+        20,
+        Math.min(50, currentRelaxation + relaxationChange),
+      );
+      this._relaxationValue.set(Math.round(newRelaxation));
+
+      // Random variation for Meditation (60-10)
+      const currentMeditation = this._meditationValue();
+      const meditationChange = (Math.random() - 0.5) * 8; // ±4 variation
+      const newMeditation = Math.max(
+        10,
+        Math.min(60, currentMeditation + meditationChange),
+      );
+      this._meditationValue.set(Math.round(newMeditation));
     }, 1000);
   }
 
@@ -341,21 +361,49 @@ export class FocusModeMainComponent implements OnDestroy {
 
   // Methods for enhanced progress circle metrics
   getFocusMetric(): SideMetric | null {
-    return {
-      value: this._focusValue(),
-      label: 'Focus',
-      color: '#809076ff',
-      position: 'left' as const,
-    };
+    // Check if we're in a break session
+    const isBreakActive = this.focusModeService.isBreakActive();
+
+    if (isBreakActive) {
+      // During break, show Relaxation instead of Focus
+      return {
+        value: this._relaxationValue(),
+        label: 'Relaxation',
+        color: '#809076ff',
+        position: 'left' as const,
+      };
+    } else {
+      // During work, show Focus
+      return {
+        value: this._focusValue(),
+        label: 'Focus',
+        color: '#809076ff',
+        position: 'left' as const,
+      };
+    }
   }
 
   getTirednessMetric(): SideMetric | null {
-    return {
-      value: this._tirednessValue(),
-      label: 'Tiredness',
-      color: '#6a8591ff',
-      position: 'right' as const,
-    };
+    // Check if we're in a break session
+    const isBreakActive = this.focusModeService.isBreakActive();
+
+    if (isBreakActive) {
+      // During break, show Meditation instead of Tiredness
+      return {
+        value: this._meditationValue(),
+        label: 'Meditation',
+        color: '#6a8591ff',
+        position: 'right' as const,
+      };
+    } else {
+      // During work, show Tiredness
+      return {
+        value: this._tirednessValue(),
+        label: 'Tiredness',
+        color: '#6a8591ff',
+        position: 'right' as const,
+      };
+    }
   }
 
   protected readonly ICAL_TYPE = ICAL_TYPE;
