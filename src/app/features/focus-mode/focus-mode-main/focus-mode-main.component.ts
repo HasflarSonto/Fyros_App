@@ -6,6 +6,7 @@ import {
   HostListener,
   inject,
   OnDestroy,
+  signal,
 } from '@angular/core';
 import { expandAnimation } from '../../../ui/animations/expand.ani';
 import { TaskCopy } from '../../tasks/task.model';
@@ -103,6 +104,12 @@ export class FocusModeMainComponent implements OnDestroy {
   // defaultTaskNotes: string = '';
   defaultTaskNotes: string = '';
   T: typeof T = T;
+
+  // Random variation signals
+  private readonly _focusValue = signal(45); // Start at middle of range
+  private readonly _tirednessValue = signal(20); // Start at middle of range
+  private _variationInterval?: number;
+
   issueUrl$: Observable<string | null> = this.taskService.currentTask$.pipe(
     switchMap((v) => {
       if (!v) {
@@ -119,6 +126,9 @@ export class FocusModeMainComponent implements OnDestroy {
   private _dragEnterTarget?: HTMLElement;
 
   constructor() {
+    // Start random variation every second
+    this._startRandomVariation();
+
     // Use effect to reactively update defaultTaskNotes
     effect(() => {
       const misc = this._globalConfigService.misc();
@@ -132,6 +142,22 @@ export class FocusModeMainComponent implements OnDestroy {
         this._store.dispatch(selectFocusTask());
       }
     });
+  }
+
+  private _startRandomVariation(): void {
+    this._variationInterval = window.setInterval(() => {
+      // Random variation for Focus (30-60)
+      const currentFocus = this._focusValue();
+      const focusChange = (Math.random() - 0.5) * 6; // ±3 variation
+      const newFocus = Math.max(30, Math.min(60, currentFocus + focusChange));
+      this._focusValue.set(Math.round(newFocus));
+
+      // Random variation for Tiredness (10-30)
+      const currentTiredness = this._tirednessValue();
+      const tirednessChange = (Math.random() - 0.5) * 4; // ±2 variation
+      const newTiredness = Math.max(10, Math.min(30, currentTiredness + tirednessChange));
+      this._tirednessValue.set(Math.round(newTiredness));
+    }, 1000);
   }
 
   @HostListener('dragenter', ['$event']) onDragEnter(ev: DragEvent): void {
@@ -161,6 +187,9 @@ export class FocusModeMainComponent implements OnDestroy {
   ngOnDestroy(): void {
     this._onDestroy$.next();
     this._onDestroy$.complete();
+    if (this._variationInterval) {
+      clearInterval(this._variationInterval);
+    }
   }
 
   changeTaskNotes($event: string): void {
@@ -312,19 +341,8 @@ export class FocusModeMainComponent implements OnDestroy {
 
   // Methods for enhanced progress circle metrics
   getFocusMetric(): SideMetric | null {
-    // Calculate focus level based on current session progress and cycle
-    const progress = this.focusModeService.progress() || 0;
-    const cycle = this.focusModeService.currentCycle() || 1;
-
-    // Focus decreases as cycles progress and increases with session progress
-    const cyclePenalty = (cycle - 1) * 15;
-    const baseFocus = 100 - cyclePenalty; // Decrease by 15 per cycle
-    const sessionBonus = Math.floor(progress / 10); // Bonus based on progress
-
-    const focusValue = Math.max(20, Math.min(100, baseFocus + sessionBonus));
-
     return {
-      value: focusValue,
+      value: this._focusValue(),
       label: 'Focus',
       color: '#809076ff',
       position: 'left' as const,
@@ -332,18 +350,8 @@ export class FocusModeMainComponent implements OnDestroy {
   }
 
   getTirednessMetric(): SideMetric | null {
-    // Calculate tiredness level based on cycles and time worked
-    const cycle = this.focusModeService.currentCycle() || 1;
-    const timeElapsed = this.focusModeService.timeElapsed() || 0;
-
-    // Tiredness increases with cycles and time
-    const cycleTiredness = (cycle - 1) * 20; // Increase by 20 per cycle
-    const timeTiredness = Math.floor(timeElapsed / (25 * 60 * 1000)) * 10; // Increase by 10 per 25min session
-
-    const tirednessValue = Math.max(0, Math.min(100, cycleTiredness + timeTiredness));
-
     return {
-      value: tirednessValue,
+      value: this._tirednessValue(),
       label: 'Tiredness',
       color: '#6a8591ff',
       position: 'right' as const,

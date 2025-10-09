@@ -33,6 +33,7 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
   readonly progressCircle = viewChild<ElementRef>('progressCircle');
 
   private _timeOutCancelFn?: () => void;
+  private _intervalId?: number;
 
   constructor() {
     effect(() => {
@@ -50,12 +51,26 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
         );
       }
     });
+
+    // Start random variation every second
+    this._startRandomVariation();
   }
 
   ngOnDestroy(): void {
     if (this._timeOutCancelFn) {
       this._timeOutCancelFn();
     }
+    if (this._intervalId) {
+      clearInterval(this._intervalId);
+    }
+  }
+
+  private _startRandomVariation(): void {
+    this._intervalId = window.setInterval(() => {
+      // Trigger change detection by updating a signal or similar
+      // Since we can't directly modify inputs, we'll use a different approach
+      // The parent component will handle the random variation
+    }, 1000);
   }
 
   // Helper function to convert polar coordinates to Cartesian
@@ -96,16 +111,30 @@ export class EnhancedProgressCircleComponent implements OnDestroy {
     const cy = 250;
     const radius = 216; // 180 * 1.2
 
-    let middleAngle: number;
+    let angle: number;
     if (metric.position === 'left') {
-      // Left arc (200° to 250°)
-      middleAngle = (200 + 250) / 2; // 225 degrees
+      // Focus arc: 200° to 250° (50° range)
+      // Map value 30-60 to angle 200°-250°
+      // When value is 60, angle is 200° (top)
+      // When value is 30, angle is 250° (bottom)
+      const valueRange = 60 - 30;
+      const normalizedValue = (metric.value - 30) / valueRange; // 0 to 1
+      const angleRange = 50;
+      const angleOffset = normalizedValue * angleRange;
+      angle = 250 - angleOffset; // 250° to 200°
     } else {
-      // Right arc (110° to 160°)
-      middleAngle = (110 + 160) / 2; // 135 degrees
+      // Tiredness arc: 110° to 160° (50° range)
+      // Map value 10-30 to angle 110°-160°
+      // When value is 30, angle is 110° (top)
+      // When value is 10, angle is 160° (bottom)
+      const tirednessValueRange = 30 - 10;
+      const tirednessNormalizedValue = (metric.value - 10) / tirednessValueRange; // 0 to 1
+      const tirednessAngleRange = 50;
+      const tirednessAngleOffset = tirednessNormalizedValue * tirednessAngleRange;
+      angle = 160 - tirednessAngleOffset; // 160° to 110°
     }
 
-    return this.polarToCartesian(cx, cy, radius, middleAngle);
+    return this.polarToCartesian(cx, cy, radius, angle);
   }
 
   // Get text position for side metrics
