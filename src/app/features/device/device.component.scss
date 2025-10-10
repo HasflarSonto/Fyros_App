@@ -1,5 +1,5 @@
 .device-page {
-  padding: 0;
+  padding: 20px 0 0 0;
   background: var(--card-bg);
   min-height: 100vh;
   font-family: 'Roboto Mono', monospace;
@@ -8,7 +8,7 @@
 .device-content {
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 }
 
 // User Info Section
@@ -91,11 +91,11 @@
 .semi-circle-container {
   position: relative;
   display: block;
-  padding: 40px 20px 60px 20px;
+  padding: 80px 20px 60px 20px;
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid var(--extra-border-color);
-  min-height: 280px;
+  min-height: 320px;
 }
 
 .semi-circle {
