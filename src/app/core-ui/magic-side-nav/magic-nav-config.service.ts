@@ -120,13 +120,6 @@ export class MagicNavConfigService {
         icon: 'grid_view',
         route: '/boards',
       },
-      {
-        type: 'route',
-        id: 'device',
-        label: T.MH.DEVICE,
-        icon: 'devices',
-        route: '/device',
-      },
 
       // Plugin entries
       ...this._buildPluginItems(),
@@ -324,6 +317,15 @@ export class MagicNavConfigService {
         defaultIcon: 'today',
       });
     }
+
+    // Add Device page between Today and Inbox
+    items.push({
+      type: 'route',
+      id: 'device',
+      label: T.MH.DEVICE,
+      icon: 'devices',
+      route: '/device',
+    });
 
     if (inboxContext) {
       items.push({
