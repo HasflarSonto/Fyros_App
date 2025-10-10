@@ -30,13 +30,19 @@ import { WorkContextService } from '../../../features/work-context/work-context.
   ],
   template: `
     @if (activeWorkContextTypeAndId()) {
-      <div
-        [matTooltip]="T.MH.GO_TO_TASK_LIST | translate"
-        class="page-title"
-        mat-ripple
-        routerLink="/active/tasks"
-      >
-        {{ displayTitle() }}
+      <div class="page-title-container">
+        <div
+          [matTooltip]="T.MH.GO_TO_TASK_LIST | translate"
+          class="page-title"
+          mat-ripple
+          routerLink="/active/tasks"
+        >
+          {{ displayTitle() }}
+        </div>
+        <div class="connected-status">
+          <div class="connected-dot"></div>
+          <span class="connected-text">Connected</span>
+        </div>
       </div>
       @if (!isXxxs()) {
         <button
@@ -64,6 +70,12 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         display: contents;
       }
 
+      .page-title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .page-title {
         font-size: 18px;
         overflow: hidden;
@@ -84,6 +96,33 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         }
       }
 
+      .connected-status {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+        margin-left: var(--s);
+        font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+        color: var(--text-color-muted);
+
+        @media (min-width: 600px) {
+          margin-left: 0;
+        }
+      }
+
+      .connected-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #809076ff;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+
+      .connected-text {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+      }
+
       .project-settings-btn {
         display: none;
         @media (min-width: 600px) {
@@ -97,7 +136,7 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         }
 
         &:hover,
-        .page-title:hover + & {
+        .page-title-container:hover + & {
           opacity: 1;
         }
       }
