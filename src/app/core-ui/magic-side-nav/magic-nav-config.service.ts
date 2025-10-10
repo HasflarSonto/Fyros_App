@@ -94,6 +94,15 @@ export class MagicNavConfigService {
       // Work Context Items
       ...this._buildWorkContextItems(),
 
+      // Device page (between Inbox and Schedule)
+      {
+        type: 'route',
+        id: 'device',
+        label: T.MH.DEVICE,
+        icon: 'devices',
+        route: '/device',
+      },
+
       // Separator
 
       // Main Routes
@@ -317,15 +326,6 @@ export class MagicNavConfigService {
         defaultIcon: 'today',
       });
     }
-
-    // Add Device page between Today and Inbox
-    items.push({
-      type: 'route',
-      id: 'device',
-      label: T.MH.DEVICE,
-      icon: 'devices',
-      route: '/device',
-    });
 
     if (inboxContext) {
       items.push({
