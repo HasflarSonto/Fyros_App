@@ -135,6 +135,9 @@
           {{ label() | translate }}
         </span>
       }
+      @if (isDevicePage() && showLabels()) {
+        <div class="device-indicator"></div>
+      }
     </a>
   } @else if (container() === 'href') {
     <a

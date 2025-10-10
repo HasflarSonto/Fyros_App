@@ -98,6 +98,20 @@
   }
 }
 
+// Device page indicator
+.device-indicator {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #809076ff;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 // Active state visuals - ensure they override Angular Material styles
 //button[mat-menu-item].nav-link[routerlinkactive="active"],
 button[mat-menu-item].nav-link.active {

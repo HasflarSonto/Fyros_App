@@ -140,4 +140,9 @@ export class NavItemComponent {
     const iconValue = this.icon();
     return iconValue ? isSingleEmoji(iconValue) : false;
   });
+
+  // Check if this is the Device page to show green dot indicator
+  isDevicePage = computed<boolean>(() => {
+    return this.label() === 'MH.DEVICE' || this.navRoute() === '/device';
+  });
 }
