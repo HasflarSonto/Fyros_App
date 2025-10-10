@@ -74,6 +74,9 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+        padding-top: 8px;
       }
 
       .page-title {
@@ -99,7 +102,7 @@ import { WorkContextService } from '../../../features/work-context/work-context.
       .connected-status {
         display: flex;
         align-items: center;
-        margin-top: 4px;
+        margin-top: 2px;
         margin-left: var(--s);
         font-family: 'Roboto Mono', monospace;
         font-size: 12px;
