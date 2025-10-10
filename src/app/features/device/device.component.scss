@@ -93,8 +93,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
+  justify-content: flex-start;
+  padding: 40px 20px 20px 20px;
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid var(--extra-border-color);
@@ -104,7 +104,7 @@
 .semi-circle {
   width: 300px;
   height: 150px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   display: block;
 }
 
@@ -113,6 +113,7 @@
   text-align: center;
   z-index: 1;
   width: 100%;
+  margin-top: -20px;
 }
 
 .main-number {
