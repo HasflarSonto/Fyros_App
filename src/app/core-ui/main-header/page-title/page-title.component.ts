@@ -74,9 +74,6 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
-        height: 100%;
-        padding-top: 8px;
       }
 
       .page-title {
@@ -102,7 +99,7 @@ import { WorkContextService } from '../../../features/work-context/work-context.
       .connected-status {
         display: flex;
         align-items: center;
-        margin-top: 2px;
+        margin-top: 4px;
         margin-left: var(--s);
         font-family: 'Roboto Mono', monospace;
         font-size: 12px;
@@ -182,6 +179,13 @@ export class PageTitleComponent {
   );
   isBoardsSection = toSignal(this._isBoardsSection$, { initialValue: false });
 
+  private _isDeviceSection$ = this._router.events.pipe(
+    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+    map((event) => !!event.urlAfterRedirects.match(/(device)$/)),
+    startWith(!!this._router.url.match(/(device)$/)),
+  );
+  isDeviceSection = toSignal(this._isDeviceSection$, { initialValue: false });
+
   // Override title for special routes
   displayTitle = computed(() => {
     if (this.isScheduleSection()) {
@@ -192,6 +196,9 @@ export class PageTitleComponent {
     }
     if (this.isBoardsSection()) {
       return 'Boards';
+    }
+    if (this.isDeviceSection()) {
+      return 'Device';
     }
     return this.activeWorkContextTitle();
   });
