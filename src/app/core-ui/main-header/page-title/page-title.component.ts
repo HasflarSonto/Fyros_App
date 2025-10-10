@@ -39,10 +39,6 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         >
           {{ displayTitle() }}
         </div>
-        <div class="connected-status">
-          <div class="connected-dot"></div>
-          <span class="connected-text">Connected</span>
-        </div>
       </div>
       @if (!isXxxs()) {
         <button
@@ -94,33 +90,6 @@ import { WorkContextService } from '../../../features/work-context/work-context.
         &:focus {
           outline: none;
         }
-      }
-
-      .connected-status {
-        display: flex;
-        align-items: center;
-        margin-top: 4px;
-        margin-left: var(--s);
-        font-family: 'Roboto Mono', monospace;
-        font-size: 12px;
-        color: var(--text-color-muted);
-
-        @media (min-width: 600px) {
-          margin-left: 0;
-        }
-      }
-
-      .connected-dot {
-        width: 6px;
-        height: 6px;
-        background-color: #809076ff;
-        border-radius: 50%;
-        margin-right: 6px;
-      }
-
-      .connected-text {
-        font-family: 'Roboto Mono', monospace;
-        font-size: 12px;
       }
 
       .project-settings-btn {

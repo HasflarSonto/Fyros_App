@@ -1,5 +1,5 @@
 .device-page {
-  padding: 20px;
+  padding: 0;
   background: var(--card-bg);
   min-height: 100vh;
   font-family: 'Roboto Mono', monospace;
@@ -8,7 +8,7 @@
 .device-content {
   max-width: 400px;
   margin: 0 auto;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 // User Info Section
@@ -106,7 +106,12 @@
 }
 
 .semi-circle-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 1;
 }
 
 .main-number {
