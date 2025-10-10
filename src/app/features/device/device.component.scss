@@ -90,30 +90,29 @@
 
 .semi-circle-container {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 40px 20px 20px 20px;
+  display: block;
+  padding: 40px 20px 60px 20px;
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid var(--extra-border-color);
-  min-height: 300px;
+  min-height: 280px;
 }
 
 .semi-circle {
   width: 300px;
   height: 150px;
-  margin-bottom: 0px;
+  margin: 0 auto;
   display: block;
 }
 
 .semi-circle-content {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   z-index: 1;
   width: 100%;
-  margin-top: -20px;
 }
 
 .main-number {
