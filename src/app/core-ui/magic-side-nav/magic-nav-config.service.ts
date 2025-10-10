@@ -120,6 +120,13 @@ export class MagicNavConfigService {
         icon: 'grid_view',
         route: '/boards',
       },
+      {
+        type: 'route',
+        id: 'device',
+        label: T.MH.DEVICE,
+        icon: 'devices',
+        route: '/device',
+      },
 
       // Plugin entries
       ...this._buildPluginItems(),
