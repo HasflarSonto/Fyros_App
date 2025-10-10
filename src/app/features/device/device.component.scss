@@ -88,36 +88,46 @@
   margin-bottom: 30px;
 }
 
+// Container for the semi-circle and text
 .semi-circle-container {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 20px 60px 20px; /* Increased top padding to 100px to prevent cut-off */
+
+  // Spacious padding to prevent cut-off
+  padding: 100px 20px 80px 20px;
+
+  // Ensure adequate height
+  min-height: 300px;
+
+  // Styling
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid var(--extra-border-color);
-  min-height: 280px; /* Increased minimum height to accommodate larger padding */
 }
 
+// The semi-circle SVG
 .semi-circle {
   width: 300px;
   height: 150px;
-  margin-bottom: 0px; /* Reduced from 20px to 0px to move it higher */
-  transform: translateY(
-    -20px
-  ); /* Use transform instead of margin to avoid overflow clipping */
+
+  // Position it higher in the container
+  margin-top: -20px;
+  margin-bottom: 20px;
 }
 
-.semi-circle-content {
+// Text content positioned over the semi-circle
+.semi-circle-text {
   position: absolute;
-  top: 50%; /* Moved back to center */
+  top: 45%; // Position higher than center
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 1;
+  z-index: 10;
 }
 
+// Main number (87)
 .main-number {
   font-size: 64px;
   font-weight: bold;
@@ -126,6 +136,7 @@
   line-height: 1;
 }
 
+// Focus level text
 .focus-level {
   font-size: 18px;
   color: var(--text-color);
@@ -133,6 +144,7 @@
   font-weight: 500;
 }
 
+// Motivational text
 .motivational-text {
   font-size: 14px;
   color: var(--text-color-muted);
