@@ -160,11 +160,23 @@ xcrun simctl erase all
 - **Confetti Integration**: Celebration animation on cycle completion
 - **State Persistence**: Cycle tracking across app sessions
 
-### **Font and Styling Integration**
+### **Device Page Development**
 
-- **Roboto Mono**: Applied to all text elements while preserving Material Icons
-- **CSS Overrides**: Using `!important` to override Material Design theme
-- **Responsive Design**: Proper scaling and positioning for different screen sizes
+- **Component**: `src/app/features/device/device.component.*`
+- **Navigation**: Added to sidebar between Inbox and Schedule
+- **Layout**: Oura Ring-inspired dashboard with sections:
+  - Brain Metrics (Attention, Relaxation, Tiredness, Meditation)
+  - Productivity Score (semi-circle progress bar with 87% completion)
+  - Working Metrics (Estimate remaining, Working today, Without Break)
+- **Styling**: Section subtitles with uppercase, letter-spacing, Roboto Mono font
+- **Semi-Circle**: SVG-based progress bar with proper viewBox and arc positioning
+
+### **Navigation Enhancements**
+
+- **Chain Link Icon**: Added to main header next to sync button
+- **Green Dot Indicator**: Shows on Device page in sidebar navigation
+- **Floating Bottom Nav**: Moved up 20px with extended white bar using `::after` pseudo-element
+- **Content Spacing**: Updated padding calculations for moved navigation
 
 ## 🚨 Critical Development Gotchas
 
@@ -244,6 +256,9 @@ dialogRef.componentInstance.afterTaskAdd.subscribe(({ taskId }) => {
 - **Random Metric Variation**: `setInterval` with proper cleanup in `ngOnDestroy`
 - **SVG Arc Generation**: Polar to Cartesian conversion for dynamic arc positioning
 - **Component Communication**: Input properties for conditional behavior (`isBreakMode`)
+- **SVG Progress Bars**: Proper viewBox (`0 -20 300 170`) and arc positioning (`M 30 140 A 120 120 0 0 1 270 140`)
+- **Navigation Integration**: Adding routes, translation keys, and sidebar items
+- **Floating UI Elements**: Using `::after` pseudo-elements for extended backgrounds
 
 ### **iOS-Specific Considerations**
 
@@ -291,6 +306,9 @@ button[color='primary']:hover {
 - **Pomodoro Timer**: Enhanced with Focus/Tiredness arcs and dynamic metrics
 - **Break Screen**: Solid green circle with Relaxation/Meditation arcs
 - **UI Positioning**: Optimized spacing for better visual hierarchy
+- **Device Page**: Oura Ring-style dashboard with Brain Metrics, Productivity Score, Working Metrics
+- **Navigation**: Chain link icon in header, green dot indicator on Device page
+- **Bottom Nav**: Floating design (20px from bottom) with extended white bar
 
 ## 🔧 Essential Commands
 
