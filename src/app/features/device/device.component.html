@@ -33,33 +33,152 @@
     <div class="focus-section">
       <div class="semi-circle-container">
         <svg
-          class="semi-circle"
-          viewBox="0 0 300 150"
+          viewBox="0 0 500 500"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <!-- Background arc (gray) -->
-          <path
-            d="M 30 120 A 120 120 0 0 1 270 120"
+          <!-- Gradient definitions -->
+          <defs>
+            <linearGradient
+              id="leftGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style="stop-color: #e6d2a6ff; stop-opacity: 1"
+              />
+              <stop
+                offset="10%"
+                style="stop-color: #e6d2a6ff; stop-opacity: 1"
+              />
+              <stop
+                offset="100%"
+                style="stop-color: #809076ff; stop-opacity: 1"
+              />
+            </linearGradient>
+            <linearGradient
+              id="rightGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                style="stop-color: #e6d2a6ff; stop-opacity: 1"
+              />
+              <stop
+                offset="10%"
+                style="stop-color: #e6d2a6ff; stop-opacity: 1"
+              />
+              <stop
+                offset="100%"
+                style="stop-color: #6a8591ff; stop-opacity: 1"
+              />
+            </linearGradient>
+          </defs>
+
+          <!-- Main circular progress ring -->
+          <circle
+            cx="250"
+            cy="250"
+            r="150"
             fill="none"
-            stroke="#e0e0e0"
-            stroke-width="12"
-            stroke-linecap="round"
+            stroke="#E5E5E5"
+            stroke-width="20"
           />
+
+          <!-- Central clock display -->
+          <text
+            x="250"
+            y="250"
+            class="clock-text"
+          >
+            87
+          </text>
+
           <!-- Progress arc (green) - 87% -->
           <path
-            d="M 30 120 A 120 120 0 0 1 270 120"
+            d="M 100 250 A 150 150 0 0 1 400 250"
             fill="none"
             stroke="#809076ff"
-            stroke-width="12"
+            stroke-width="20"
             stroke-linecap="round"
-            stroke-dasharray="376.8"
-            stroke-dashoffset="49.0"
+            stroke-dasharray="471.24"
+            stroke-dashoffset="61.26"
           />
+
+          <!-- Right Arc (Tiredness) -->
+          <path
+            d="M 250 70 A 180 180 0 0 1 250 430"
+            fill="none"
+            stroke="url(#rightGradient)"
+            stroke-width="20"
+            stroke-linecap="round"
+          />
+
+          <!-- Left Arc (Focus) -->
+          <path
+            d="M 250 70 A 180 180 0 0 0 250 430"
+            fill="none"
+            stroke="url(#leftGradient)"
+            stroke-width="20"
+            stroke-linecap="round"
+          />
+
+          <!-- Thumbs and labels -->
+          <circle
+            cx="250"
+            cy="70"
+            r="8"
+            fill="white"
+            stroke="#6a8591ff"
+            stroke-width="2"
+          />
+          <text
+            x="250"
+            y="50"
+            class="slider-value"
+            text-anchor="middle"
+          >
+            24
+          </text>
+          <text
+            x="250"
+            y="25"
+            class="slider-label"
+            text-anchor="middle"
+          >
+            Tiredness
+          </text>
+
+          <circle
+            cx="250"
+            cy="430"
+            r="8"
+            fill="white"
+            stroke="#809076ff"
+            stroke-width="2"
+          />
+          <text
+            x="250"
+            y="450"
+            class="slider-value"
+            text-anchor="middle"
+          >
+            47
+          </text>
+          <text
+            x="250"
+            y="475"
+            class="slider-label"
+            text-anchor="middle"
+          >
+            Focus
+          </text>
         </svg>
-        <div class="semi-circle-content">
-          <div class="main-number">87</div>
-          <div class="focus-level">High Focus</div>
-          <div class="motivational-text">You've really made the most of today</div>
-        </div>
       </div>
     </div>
 

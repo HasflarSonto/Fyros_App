@@ -1,5 +1,5 @@
 .device-page {
-  padding: 20px 0 0 0;
+  padding: 0;
   background: var(--card-bg);
   min-height: 100vh;
   font-family: 'Roboto Mono', monospace;
@@ -8,7 +8,7 @@
 .device-content {
   max-width: 400px;
   margin: 0 auto;
-  padding: 0 20px 20px 20px;
+  padding: 20px;
 }
 
 // User Info Section
@@ -91,54 +91,47 @@
 .semi-circle-container {
   position: relative;
   display: block;
-  padding: 80px 20px 60px 20px;
+  padding: 20px;
   background: var(--card-bg);
   border-radius: 16px;
   border: 1px solid var(--extra-border-color);
-  min-height: 320px;
-}
-
-.semi-circle {
-  width: 300px;
-  height: 150px;
-  margin: 0 auto;
-  display: block;
-}
-
-.semi-circle-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 1;
+  min-height: 400px;
   width: 100%;
-}
-
-.main-number {
-  font-size: 64px;
-  font-weight: bold;
-  color: var(--text-color);
-  margin-bottom: 8px;
-  line-height: 1;
-  text-align: center;
-}
-
-.focus-level {
-  font-size: 18px;
-  color: var(--text-color);
-  margin-bottom: 8px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.motivational-text {
-  font-size: 14px;
-  color: var(--text-color-muted);
-  line-height: 1.4;
-  max-width: 280px;
+  max-width: 400px;
   margin: 0 auto;
-  text-align: center;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  max-width: 360px;
+  max-height: 360px;
+  display: block;
+  margin: 0 auto;
+}
+
+.clock-text {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 48px;
+  font-weight: bold;
+  fill: var(--text-color);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.slider-value {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 20px;
+  font-weight: bold;
+  fill: var(--text-color);
+  dominant-baseline: central;
+}
+
+.slider-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+  fill: var(--text-color-muted);
+  dominant-baseline: central;
 }
 
 // Status Items
