@@ -50,10 +50,23 @@
 }
 
 // Four Metric Circles
+.metrics-section {
+  margin-bottom: 30px;
+}
+
+.section-subtitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-color-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Roboto Mono', monospace;
+}
+
 .metrics-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
   gap: 8px;
 }
 
@@ -142,6 +155,10 @@
 }
 
 // Status Items
+.status-section {
+  margin-bottom: 30px;
+}
+
 .status-items {
   display: flex;
   flex-direction: column;
