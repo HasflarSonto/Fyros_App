@@ -6,7 +6,7 @@
 
 .mobile-bottom-nav {
   position: fixed;
-  bottom: 8px;
+  bottom: 20px; // Move up by 20px from 0
   left: 0;
   right: 0;
   height: var(--bottom-nav-height);
@@ -18,7 +18,18 @@
   padding: 0 8px;
   z-index: var(--z-mobile-bottom-nav);
   display: flex;
-  border-radius: 16px 16px 0 0;
+
+  // Extended white bar below the nav
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; // Extend 20px below the nav
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: var(--bottom-nav-bg);
+    z-index: -1;
+  }
 
   //// Glass effect only when background image is present
   :host-context(.hasBgImage) & {
