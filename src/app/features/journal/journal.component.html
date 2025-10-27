@@ -1,0 +1,191 @@
+<div class="journal-page">
+  <!-- Navigation Tabs -->
+  <div class="navigation-tabs">
+    @for (tab of tabs; track tab.id) {
+      <button
+        class="nav-tab"
+        [class.active]="selectedTab() === tab.id"
+        (click)="selectTab(tab.id)"
+      >
+        <mat-icon>{{ tab.icon }}</mat-icon>
+        <span>{{ tab.name }}</span>
+      </button>
+    }
+  </div>
+
+  <!-- Logging Tab Content -->
+  @if (selectedTab() === 'logging') {
+    <div class="logging-content">
+      <div class="behaviors-section">
+        <div class="behaviors-header">
+          <h2>Track Your Behaviors</h2>
+          <p class="behaviors-description">
+            Select behaviors you engaged in today to see their impact on your performance
+          </p>
+        </div>
+
+        <div class="behaviors-list">
+          @for (behavior of filteredBehaviors(); track behavior.id) {
+            <div
+              class="behavior-item"
+              [class.selected]="isBehaviorSelected(behavior.id)"
+            >
+              <div class="behavior-content">
+                <div class="behavior-main">
+                  <h3 class="behavior-name">{{ behavior.name }}</h3>
+                  <p class="behavior-description">{{ behavior.description }}</p>
+                </div>
+                <div
+                  class="behavior-impact"
+                  *ngIf="behavior.impact"
+                >
+                  <span
+                    class="impact-value"
+                    [style.color]="getImpactColor(behavior.impactType!)"
+                    [class.positive]="behavior.impactType === 'positive'"
+                    [class.negative]="behavior.impactType === 'negative'"
+                  >
+                    {{ behavior.impactType === 'positive' ? '+' : ''
+                    }}{{ behavior.impact }}%
+                  </span>
+                  <div class="impact-bar">
+                    <div
+                      class="impact-fill"
+                      [style.width.%]="getImpactBarWidth(behavior.impact)"
+                      [style.background-color]="getImpactColor(behavior.impactType!)"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="behavior-action">
+                <button
+                  mat-icon-button
+                  [class.selected]="isBehaviorSelected(behavior.id)"
+                  (click)="toggleBehavior(behavior.id)"
+                >
+                  <mat-icon>
+                    {{
+                      isBehaviorSelected(behavior.id)
+                        ? 'check_circle'
+                        : 'add_circle_outline'
+                    }}
+                  </mat-icon>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Impact Analysis Tab Content -->
+  @if (selectedTab() !== 'logging') {
+    <div class="impact-analysis-content">
+      <!-- Header -->
+      <div class="impact-header">
+        <div class="refresh-indicator">REFRESHED DAILY</div>
+        <h2>{{ getTabDisplayName(selectedTab()) }} Impact Analysis</h2>
+        <p class="impact-description">
+          Track your behaviors to see how they impact your
+          {{ getTabDisplayName(selectedTab()) }}
+        </p>
+      </div>
+
+      <!-- Impact Analysis List -->
+      <div class="impact-analysis-list">
+        <!-- Column Headers -->
+        <div class="impact-column-headers">
+          <div class="hurts-header">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+            <span>HURTS</span>
+          </div>
+          <div class="impact-header-center">% IMPACT</div>
+          <div class="helps-header">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+            <span>HELPS</span>
+          </div>
+        </div>
+
+        <!-- Impact Items -->
+        @for (behavior of filteredBehaviors(); track behavior.id) {
+          <div class="impact-item">
+            <div class="impact-item-content">
+              <!-- Top Row: Name and Percentage -->
+              <div class="impact-item-header">
+                <div class="behavior-name">{{ behavior.name.toUpperCase() }}</div>
+                <div
+                  class="impact-percentage"
+                  [class.positive]="behavior.impactType === 'positive'"
+                  [class.negative]="behavior.impactType === 'negative'"
+                >
+                  {{ behavior.impactType === 'positive' ? '+' : ''
+                  }}{{ behavior.impact }}%
+                </div>
+              </div>
+
+              <!-- Bottom Row: Slider Bar -->
+              <div class="impact-bar-container">
+                <div class="impact-bar">
+                  <!-- Connecting line from center to dot -->
+                  <div
+                    class="connecting-line"
+                    [class.positive]="behavior.impactType === 'positive'"
+                    [class.negative]="behavior.impactType === 'negative'"
+                    [style.left.%]="
+                      behavior.impactType === 'positive'
+                        ? 50
+                        : getImpactBarEndPosition(behavior) + 1
+                    "
+                    [style.width.%]="
+                      behavior.impactType === 'positive'
+                        ? getImpactBarEndPosition(behavior) - 50
+                        : 50 - getImpactBarEndPosition(behavior)
+                    "
+                    [style.right.%]="behavior.impactType === 'negative' ? 50 : null"
+                  ></div>
+                  <!-- Center line (zero point) -->
+                  <div
+                    class="center-line"
+                    [class.positive]="behavior.impactType === 'positive'"
+                    [class.negative]="behavior.impactType === 'negative'"
+                  ></div>
+                  <div
+                    class="impact-fill"
+                    [class.positive]="behavior.impactType === 'positive'"
+                    [class.negative]="behavior.impactType === 'negative'"
+                    [style.left.%]="
+                      behavior.impactType === 'positive'
+                        ? 50
+                        : getImpactBarEndPosition(behavior)
+                    "
+                    [style.right.%]="
+                      behavior.impactType === 'negative'
+                        ? 100 - getImpactBarEndPosition(behavior)
+                        : 100 - 50
+                    "
+                  ></div>
+                  <div
+                    class="impact-dot"
+                    [class.positive]="behavior.impactType === 'positive'"
+                    [class.negative]="behavior.impactType === 'negative'"
+                    [style.left.%]="
+                      behavior.impactType === 'positive'
+                        ? getImpactBarEndPosition(behavior)
+                        : getImpactBarEndPosition(behavior)
+                    "
+                    [style.right.%]="
+                      behavior.impactType === 'negative'
+                        ? 100 - getImpactBarEndPosition(behavior)
+                        : 50
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

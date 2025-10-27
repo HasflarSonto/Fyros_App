@@ -184,7 +184,7 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
       baseUrl: null,
       userName: null,
       password: null,
-      syncFolderPath: 'super-productivity',
+      syncFolderPath: 'fyros',
     },
 
     localFileSync: {

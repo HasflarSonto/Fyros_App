@@ -69,6 +69,22 @@ export const APP_ROUTES: Routes = [
     canActivate: [FocusOverlayOpenGuard],
   },
   {
+    path: 'advanced-mode',
+    loadComponent: () =>
+      import('./features/device/advanced-mode.component').then(
+        (m) => m.AdvancedModeComponent,
+      ),
+    data: { page: 'advanced-mode' },
+    canActivate: [FocusOverlayOpenGuard],
+  },
+  {
+    path: 'journal',
+    loadComponent: () =>
+      import('./features/journal/journal.component').then((m) => m.JournalComponent),
+    data: { page: 'journal' },
+    canActivate: [FocusOverlayOpenGuard],
+  },
+  {
     path: 'tag/:id/tasks',
     // eagerly loaded
     component: TagTaskPageComponent,

@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.superproductivity.superproductivity',
-  appName: 'super-productivity',
+  appId: 'com.fyros.app',
+  appName: 'Fyros',
   webDir: 'dist/browser',
   plugins: {
     CapacitorHttp: {

@@ -1,7 +1,7 @@
 {
-  "name": "superProductivity",
+  "name": "fyros",
   "version": "15.1.0-rc.0",
-  "description": "ToDo list and Time Tracking",
+  "description": "Fyros - Advanced ToDo list and Time Tracking",
   "keywords": [
     "ToDo",
     "Task Management",
@@ -9,10 +9,10 @@
     "GitHub",
     "Time Tracking"
   ],
-  "homepage": "https://super-productivity.com",
+  "homepage": "https://fyros.app",
   "repository": {
     "type": "git",
-    "url": "git://github.com/johannesjo/super-productivity.git"
+    "url": "git://github.com/johannesjo/fyros.git"
   },
   "license": "MIT",
   "author": "Johannes Millan <contact@super-productivity.com> (http://super-productivity.com)",

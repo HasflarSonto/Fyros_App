@@ -94,6 +94,50 @@ export class FocusModeBreakComponent implements OnDestroy {
       : T.F.FOCUS_MODE.SHORT_BREAK,
   );
 
+  // Get current cycle for short breaks
+  readonly currentCycle = computed(() => {
+    return this.focusModeService.currentCycle() ?? 1;
+  });
+
+  // Get focus status text based on cycle
+  readonly focusStatusText = computed(() => {
+    if (this.focusModeService.isBreakLong()) {
+      return {
+        title: 'Deep Focus',
+        value: '86',
+        message: "You're Unstoppable",
+      };
+    }
+
+    const cycle = this.currentCycle();
+    switch (cycle) {
+      case 1:
+        return {
+          title: 'Stable Focus',
+          value: '64',
+          message: 'Keep the pace!',
+        };
+      case 2:
+        return {
+          title: 'Deep Focus',
+          value: '83',
+          message: 'Great Rhythm',
+        };
+      case 3:
+        return {
+          title: 'Rising Focus',
+          value: '38',
+          message: 'Stretch, breathe, and recharge your energy',
+        };
+      default:
+        return {
+          title: 'Stable Focus',
+          value: '64',
+          message: 'Keep the pace!',
+        };
+    }
+  });
+
   skipBreak(): void {
     this._store.dispatch(skipBreak());
   }

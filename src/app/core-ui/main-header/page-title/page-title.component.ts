@@ -155,6 +155,13 @@ export class PageTitleComponent {
   );
   isDeviceSection = toSignal(this._isDeviceSection$, { initialValue: false });
 
+  private _isJournalSection$ = this._router.events.pipe(
+    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+    map((event) => !!event.urlAfterRedirects.match(/(journal)$/)),
+    startWith(!!this._router.url.match(/(journal)$/)),
+  );
+  isJournalSection = toSignal(this._isJournalSection$, { initialValue: false });
+
   // Override title for special routes
   displayTitle = computed(() => {
     if (this.isScheduleSection()) {
@@ -168,6 +175,9 @@ export class PageTitleComponent {
     }
     if (this.isDeviceSection()) {
       return 'Device';
+    }
+    if (this.isJournalSection()) {
+      return 'Journal';
     }
     return this.activeWorkContextTitle();
   });

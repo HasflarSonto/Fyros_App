@@ -1,5 +1,5 @@
-<a href="https://super-productivity.com/">
-  <img align="center" alt="Banner" src="docs/screens/banner.png" />
+zz <a href="https://super-productivity.com/">
+<img align="center" alt="Banner" src="docs/screens/banner.png" />
 </a>
 
 <br>

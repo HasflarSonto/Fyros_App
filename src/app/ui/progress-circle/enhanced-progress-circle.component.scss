@@ -1,5 +1,19 @@
 :host {
   display: block;
+  width: 330px; /* 220px * 1.5 */
+  height: 330px; /* 220px * 1.5 */
+  @media (min-height: 800px) and (min-width: 500px) {
+    width: 390px; /* 260px * 1.5 */
+    height: 390px; /* 260px * 1.5 */
+  }
+  @media (min-height: 900px) and (min-width: 600px) {
+    width: 450px; /* 300px * 1.5 */
+    height: 450px; /* 300px * 1.5 */
+  }
+  @media (max-height: 500px) {
+    width: 210px; /* 140px * 1.5 */
+    height: 210px; /* 140px * 1.5 */
+  }
 }
 
 .enhanced-circle {

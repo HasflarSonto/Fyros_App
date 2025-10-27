@@ -16,13 +16,23 @@
       [isBreakMode]="true"
     ></enhanced-progress-circle>
 
-    <!-- Time display overlay on the enhanced progress circle -->
-    <div class="time-overlay">
-      {{ remainingTime() | msToMinuteClockString }}
-    </div>
+    <!-- Custom focus status text for all breaks -->
+    @if (focusStatusText(); as statusText) {
+      <div class="focus-status-text">
+        <div class="focus-title">{{ statusText.title }}</div>
+        <div class="focus-value">{{ statusText.value }}</div>
+        <div class="focus-message">{{ statusText.message }}</div>
+      </div>
+    }
   </div>
 
-  <task-tracking-info></task-tracking-info>
+  <!-- Time display below the timer circle -->
+  <div class="time-display">
+    {{ remainingTime() | msToMinuteClockString }}
+  </div>
+
+  <!-- Hide task tracking info during breaks -->
+  <!-- <task-tracking-info></task-tracking-info> -->
 
   <p class="break-message">{{ T.F.FOCUS_MODE.BREAK_RELAX_MSG | translate }}</p>
 

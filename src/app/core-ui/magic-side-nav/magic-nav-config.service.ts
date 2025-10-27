@@ -102,6 +102,13 @@ export class MagicNavConfigService {
         icon: 'devices',
         route: '/device',
       },
+      {
+        type: 'route',
+        id: 'journal',
+        label: 'Journal',
+        icon: 'track_changes',
+        route: '/journal',
+      },
 
       // Separator
 
@@ -219,7 +226,7 @@ export class MagicNavConfigService {
             id: 'help-online',
             label: T.MH.HM.GET_HELP_ONLINE,
             icon: 'help_center',
-            href: 'https://github.com/johannesjo/super-productivity/blob/master/README.md#question-how-to-use-it',
+            href: 'https://github.com/johannesjo/fyros/blob/master/README.md#question-how-to-use-it',
           },
           {
             type: 'action',
@@ -233,14 +240,14 @@ export class MagicNavConfigService {
             id: 'help-contribute',
             label: T.MH.HM.CONTRIBUTE,
             icon: 'volunteer_activism',
-            href: 'https://github.com/johannesjo/super-productivity/blob/master/CONTRIBUTING.md',
+            href: 'https://github.com/johannesjo/fyros/blob/master/CONTRIBUTING.md',
           },
           {
             type: 'href',
             id: 'help-reddit',
             label: T.MH.HM.REDDIT_COMMUNITY,
             icon: 'forum',
-            href: 'https://www.reddit.com/r/superProductivity/',
+            href: 'https://www.reddit.com/r/fyros/',
           },
           {
             type: 'action',

@@ -112,3 +112,6 @@ playwright-report/
 
 
 electron-builder-appx.yaml
+
+# screenshot test images
+/screenshots

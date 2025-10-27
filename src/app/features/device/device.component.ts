@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'device',
@@ -9,5 +10,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DeviceComponent {
-  constructor() {}
+  private readonly router = inject(Router);
+
+  openAdvancedMode(): void {
+    // Navigate to a new advanced mode page
+    this.router.navigate(['/advanced-mode']);
+  }
 }

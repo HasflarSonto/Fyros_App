@@ -1,0 +1,439 @@
+<div class="advanced-mode-page">
+  <div class="advanced-mode-content">
+    <!-- Header -->
+    <div class="header-section">
+      <button
+        class="back-button"
+        (click)="goBack()"
+      >
+        ← Back
+      </button>
+      <h1>Advanced Mode</h1>
+      <div class="user-info">Patrick_Fyros_Band</div>
+    </div>
+
+    <!-- Brain Metrics Graph -->
+    <div class="graph-section">
+      <div class="section-title">Brain Metrics Over Time</div>
+      <div class="metrics-graph">
+        <svg
+          class="brain-metrics-chart"
+          viewBox="0 0 400 200"
+        >
+          <!-- Grid lines -->
+          <defs>
+            <pattern
+              id="grid"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="var(--extra-border-color)"
+                stroke-width="0.5"
+                opacity="0.3"
+              />
+            </pattern>
+          </defs>
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#grid)"
+          />
+
+          <!-- Y-axis labels -->
+          <text
+            x="10"
+            y="20"
+            class="axis-label"
+          >
+            100
+          </text>
+          <text
+            x="10"
+            y="60"
+            class="axis-label"
+          >
+            75
+          </text>
+          <text
+            x="10"
+            y="100"
+            class="axis-label"
+          >
+            50
+          </text>
+          <text
+            x="10"
+            y="140"
+            class="axis-label"
+          >
+            25
+          </text>
+          <text
+            x="10"
+            y="180"
+            class="axis-label"
+          >
+            0
+          </text>
+
+          <!-- X-axis labels -->
+          <text
+            x="50"
+            y="195"
+            class="axis-label"
+          >
+            -30s
+          </text>
+          <text
+            x="150"
+            y="195"
+            class="axis-label"
+          >
+            -15s
+          </text>
+          <text
+            x="250"
+            y="195"
+            class="axis-label"
+          >
+            0s
+          </text>
+          <text
+            x="350"
+            y="195"
+            class="axis-label"
+          >
+            +15s
+          </text>
+
+          <!-- Focus line (green) -->
+          <path
+            d="M 20 80 Q 100 60 180 70 Q 260 75 340 65"
+            fill="none"
+            stroke="#809076"
+            stroke-width="3"
+            class="metric-line"
+          />
+
+          <!-- Meditation line (blue) -->
+          <path
+            d="M 20 120 Q 100 100 180 110 Q 260 105 340 95"
+            fill="none"
+            stroke="#64747d"
+            stroke-width="3"
+            class="metric-line"
+          />
+
+          <!-- Relaxation line (beige) -->
+          <path
+            d="M 20 140 Q 100 130 180 135 Q 260 125 340 115"
+            fill="none"
+            stroke="#dbd4c2"
+            stroke-width="3"
+            class="metric-line"
+          />
+
+          <!-- Tiredness line (brown) -->
+          <path
+            d="M 20 160 Q 100 150 180 155 Q 260 145 340 135"
+            fill="none"
+            stroke="#574535"
+            stroke-width="3"
+            class="metric-line"
+          />
+        </svg>
+
+        <!-- Legend -->
+        <div class="graph-legend">
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #809076"
+            ></div>
+            <span>Focus</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #64747d"
+            ></div>
+            <span>Meditation</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #dbd4c2"
+            ></div>
+            <span>Relaxation</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #574535"
+            ></div>
+            <span>Tiredness</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raw EEG Channels -->
+    <div class="eeg-section">
+      <div class="section-title">Raw EEG Channels</div>
+      <div class="eeg-channels">
+        <!-- Left Frontal Channel -->
+        <div class="eeg-channel">
+          <div class="channel-label">Left Frontal (F3)</div>
+          <svg
+            class="eeg-wave"
+            viewBox="0 0 400 120"
+          >
+            <!-- Realistic EEG pattern with mixed frequencies -->
+            <path
+              d="M 0 60 L 2 58 L 4 62 L 6 55 L 8 65 L 10 52 L 12 68 L 14 50 L 16 70 L 18 48 L 20 72 L 22 46 L 24 74 L 26 44 L 28 76 L 30 42 L 32 78 L 34 40 L 36 80 L 38 38 L 40 82 L 42 36 L 44 84 L 46 34 L 48 86 L 50 32 L 52 88 L 54 30 L 56 90 L 58 28 L 60 92 L 62 26 L 64 94 L 66 24 L 68 96 L 70 22 L 72 98 L 74 20 L 76 100 L 78 18 L 80 102 L 82 16 L 84 104 L 86 14 L 88 106 L 90 12 L 92 108 L 94 10 L 96 110 L 98 8 L 100 112 L 102 6 L 104 114 L 106 4 L 108 116 L 110 2 L 112 118 L 114 0 L 116 120 L 118 -2 L 120 122 L 122 -4 L 124 124 L 126 -6 L 128 126 L 130 -8 L 132 128 L 134 -10 L 136 130 L 138 -12 L 140 132 L 142 -14 L 144 134 L 146 -16 L 148 136 L 150 -18 L 152 138 L 154 -20 L 156 140 L 158 -22 L 160 142 L 162 -24 L 164 144 L 166 -26 L 168 146 L 170 -28 L 172 148 L 174 -30 L 176 150 L 178 -32 L 180 152 L 182 -34 L 184 154 L 186 -36 L 188 156 L 190 -38 L 192 158 L 194 -40 L 196 160 L 198 -42 L 200 162 L 202 -44 L 204 164 L 206 -46 L 208 166 L 210 -48 L 212 168 L 214 -50 L 216 170 L 218 -52 L 220 172 L 222 -54 L 224 174 L 226 -56 L 228 176 L 230 -58 L 232 178 L 234 -60 L 236 180 L 238 -62 L 240 182 L 242 -64 L 244 184 L 246 -66 L 248 186 L 250 -68 L 252 188 L 254 -70 L 256 190 L 258 -72 L 260 192 L 262 -74 L 264 194 L 266 -76 L 268 196 L 270 -78 L 272 198 L 274 -80 L 276 200 L 278 -82 L 280 202 L 282 -84 L 284 204 L 286 -86 L 288 206 L 290 -88 L 292 208 L 294 -90 L 296 210 L 298 -92 L 300 212 L 302 -94 L 304 214 L 306 -96 L 308 216 L 310 -98 L 312 218 L 314 -100 L 316 220 L 318 -102 L 320 222 L 322 -104 L 324 224 L 326 -106 L 328 226 L 330 -108 L 332 228 L 334 -110 L 336 230 L 338 -112 L 340 232 L 342 -114 L 344 234 L 346 -116 L 348 236 L 350 -118 L 352 238 L 354 -120 L 356 240 L 358 -122 L 360 242 L 362 -124 L 364 244 L 366 -126 L 368 246 L 370 -128 L 372 248 L 374 -130 L 376 250 L 378 -132 L 380 252 L 382 -134 L 384 254 L 386 -136 L 388 256 L 390 -138 L 392 258 L 394 -140 L 396 260 L 398 -142 L 400 60"
+              fill="none"
+              stroke="#809076"
+              stroke-width="1"
+              class="eeg-wave"
+            />
+          </svg>
+        </div>
+
+        <!-- Right Frontal Channel -->
+        <div class="eeg-channel">
+          <div class="channel-label">Right Frontal (F4)</div>
+          <svg
+            class="eeg-wave"
+            viewBox="0 0 400 120"
+          >
+            <!-- Different realistic EEG pattern -->
+            <path
+              d="M 0 60 L 1 65 L 2 55 L 3 70 L 4 50 L 5 75 L 6 45 L 7 80 L 8 40 L 9 85 L 10 35 L 11 90 L 12 30 L 13 95 L 14 25 L 15 100 L 16 20 L 17 105 L 18 15 L 19 110 L 20 10 L 21 115 L 22 5 L 23 120 L 24 0 L 25 125 L 26 -5 L 27 130 L 28 -10 L 29 135 L 30 -15 L 31 140 L 32 -20 L 33 145 L 34 -25 L 35 150 L 36 -30 L 37 155 L 38 -35 L 39 160 L 40 -40 L 41 165 L 42 -45 L 43 170 L 44 -50 L 45 175 L 46 -55 L 47 180 L 48 -60 L 49 185 L 50 -65 L 51 190 L 52 -70 L 53 195 L 54 -75 L 55 200 L 56 -80 L 57 205 L 58 -85 L 59 210 L 60 -90 L 61 215 L 62 -95 L 63 220 L 64 -100 L 65 225 L 66 -105 L 67 230 L 68 -110 L 69 235 L 70 -115 L 71 240 L 72 -120 L 73 245 L 74 -125 L 75 250 L 76 -130 L 77 255 L 78 -135 L 79 260 L 80 -140 L 81 265 L 82 -145 L 83 270 L 84 -150 L 85 275 L 86 -155 L 87 280 L 88 -160 L 89 285 L 90 -165 L 91 290 L 92 -170 L 93 295 L 94 -175 L 95 300 L 96 -180 L 97 305 L 98 -185 L 99 310 L 100 -190 L 101 315 L 102 -195 L 103 320 L 104 -200 L 105 325 L 106 -205 L 107 330 L 108 -210 L 109 335 L 110 -215 L 111 340 L 112 -220 L 113 345 L 114 -225 L 115 350 L 116 -230 L 117 355 L 118 -235 L 119 360 L 120 -240 L 121 365 L 122 -245 L 123 370 L 124 -250 L 125 375 L 126 -255 L 127 380 L 128 -260 L 129 385 L 130 -265 L 131 390 L 132 -270 L 133 395 L 134 -275 L 135 400 L 136 -280 L 137 405 L 138 -285 L 139 410 L 140 -290 L 141 415 L 142 -295 L 143 420 L 144 -300 L 145 425 L 146 -305 L 147 430 L 148 -310 L 149 435 L 150 -315 L 151 440 L 152 -320 L 153 445 L 154 -325 L 155 450 L 156 -330 L 157 455 L 158 -335 L 159 460 L 160 -340 L 161 465 L 162 -345 L 163 470 L 164 -350 L 165 475 L 166 -355 L 167 480 L 168 -360 L 169 485 L 170 -365 L 171 490 L 172 -370 L 173 495 L 174 -375 L 175 500 L 176 -380 L 177 505 L 178 -385 L 179 510 L 180 -390 L 181 515 L 182 -395 L 183 520 L 184 -400 L 185 525 L 186 -405 L 187 530 L 188 -410 L 189 535 L 190 -415 L 191 540 L 192 -420 L 193 545 L 194 -425 L 195 550 L 196 -430 L 197 555 L 198 -435 L 199 560 L 200 -440 L 201 565 L 202 -445 L 203 570 L 204 -450 L 205 575 L 206 -455 L 207 580 L 208 -460 L 209 585 L 210 -465 L 211 590 L 212 -470 L 213 595 L 214 -475 L 215 600 L 216 -480 L 217 605 L 218 -485 L 219 610 L 220 -490 L 221 615 L 222 -495 L 223 620 L 224 -500 L 225 625 L 226 -505 L 227 630 L 228 -510 L 229 635 L 230 -515 L 231 640 L 232 -520 L 233 645 L 234 -525 L 235 650 L 236 -530 L 237 655 L 238 -535 L 239 660 L 240 -540 L 241 665 L 242 -545 L 243 670 L 244 -550 L 245 675 L 246 -555 L 247 680 L 248 -560 L 249 685 L 250 -565 L 251 690 L 252 -570 L 253 695 L 254 -575 L 255 700 L 256 -580 L 257 705 L 258 -585 L 259 710 L 260 -590 L 261 715 L 262 -595 L 263 720 L 264 -600 L 265 725 L 266 -605 L 267 730 L 268 -610 L 269 735 L 270 -615 L 271 740 L 272 -620 L 273 745 L 274 -625 L 275 750 L 276 -630 L 277 755 L 278 -635 L 279 760 L 280 -640 L 281 765 L 282 -645 L 283 770 L 284 -650 L 285 775 L 286 -655 L 287 780 L 288 -660 L 289 785 L 290 -665 L 291 790 L 292 -670 L 293 795 L 294 -675 L 295 800 L 296 -680 L 297 805 L 298 -685 L 299 810 L 300 -690 L 301 815 L 302 -695 L 303 820 L 304 -700 L 305 825 L 306 -705 L 307 830 L 308 -710 L 309 835 L 310 -715 L 311 840 L 312 -720 L 313 845 L 314 -725 L 315 850 L 316 -730 L 317 855 L 318 -735 L 319 860 L 320 -740 L 321 865 L 322 -745 L 323 870 L 324 -750 L 325 875 L 326 -755 L 327 880 L 328 -760 L 329 885 L 330 -765 L 331 890 L 332 -770 L 333 895 L 334 -775 L 335 900 L 336 -780 L 337 905 L 338 -785 L 339 910 L 340 -790 L 341 915 L 342 -795 L 343 920 L 344 -800 L 345 925 L 346 -805 L 347 930 L 348 -810 L 349 935 L 350 -815 L 351 940 L 352 -820 L 353 945 L 354 -825 L 355 950 L 356 -830 L 357 955 L 358 -835 L 359 960 L 360 -840 L 361 965 L 362 -845 L 363 970 L 364 -850 L 365 975 L 366 -855 L 367 980 L 368 -860 L 369 985 L 370 -865 L 371 990 L 372 -870 L 373 995 L 374 -875 L 375 1000 L 376 -880 L 377 1005 L 378 -885 L 379 1010 L 380 -890 L 381 1015 L 382 -895 L 383 1020 L 384 -900 L 385 1025 L 386 -905 L 387 1030 L 388 -910 L 389 1035 L 390 -915 L 391 1040 L 392 -920 L 393 1045 L 394 -925 L 395 1050 L 396 -930 L 397 1055 L 398 -935 L 399 1060 L 400 60"
+              fill="none"
+              stroke="#64747d"
+              stroke-width="1"
+              class="eeg-wave"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unified Brain Wave Analysis -->
+    <div class="wave-types-section">
+      <div class="section-title">Brain Wave Analysis (All Frequencies)</div>
+      <div class="unified-wave-graph">
+        <svg
+          class="brain-waves-chart"
+          viewBox="0 0 400 200"
+        >
+          <!-- Grid lines -->
+          <defs>
+            <pattern
+              id="waveGrid"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="var(--extra-border-color)"
+                stroke-width="0.5"
+                opacity="0.2"
+              />
+            </pattern>
+          </defs>
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#waveGrid)"
+          />
+
+          <!-- Y-axis labels -->
+          <text
+            x="10"
+            y="20"
+            class="axis-label"
+          >
+            100μV
+          </text>
+          <text
+            x="10"
+            y="60"
+            class="axis-label"
+          >
+            50μV
+          </text>
+          <text
+            x="10"
+            y="100"
+            class="axis-label"
+          >
+            0μV
+          </text>
+          <text
+            x="10"
+            y="140"
+            class="axis-label"
+          >
+            -50μV
+          </text>
+          <text
+            x="10"
+            y="180"
+            class="axis-label"
+          >
+            -100μV
+          </text>
+
+          <!-- X-axis labels -->
+          <text
+            x="50"
+            y="195"
+            class="axis-label"
+          >
+            0s
+          </text>
+          <text
+            x="150"
+            y="195"
+            class="axis-label"
+          >
+            2s
+          </text>
+          <text
+            x="250"
+            y="195"
+            class="axis-label"
+          >
+            4s
+          </text>
+          <text
+            x="350"
+            y="195"
+            class="axis-label"
+          >
+            6s
+          </text>
+
+          <!-- Delta Waves (0.5-4 Hz) - Slow, high amplitude -->
+          <path
+            d="M 20 100 Q 60 80 100 100 Q 140 120 180 100 Q 220 80 260 100 Q 300 120 340 100 Q 380 80 400 100"
+            fill="none"
+            stroke="#574535"
+            stroke-width="2"
+            class="wave-line"
+            opacity="0.8"
+          />
+
+          <!-- Theta Waves (4-8 Hz) - Medium frequency -->
+          <path
+            d="M 20 100 L 30 85 L 40 115 L 50 85 L 60 115 L 70 85 L 80 115 L 90 85 L 100 115 L 110 85 L 120 115 L 130 85 L 140 115 L 150 85 L 160 115 L 170 85 L 180 115 L 190 85 L 200 115 L 210 85 L 220 115 L 230 85 L 240 115 L 250 85 L 260 115 L 270 85 L 280 115 L 290 85 L 300 115 L 310 85 L 320 115 L 330 85 L 340 115 L 350 85 L 360 115 L 370 85 L 380 115 L 390 85 L 400 100"
+            fill="none"
+            stroke="#dbd4c2"
+            stroke-width="1.5"
+            class="wave-line"
+            opacity="0.7"
+          />
+
+          <!-- Alpha Waves (8-13 Hz) - Regular frequency -->
+          <path
+            d="M 20 100 L 25 80 L 30 120 L 35 80 L 40 120 L 45 80 L 50 120 L 55 80 L 60 120 L 65 80 L 70 120 L 75 80 L 80 120 L 85 80 L 90 120 L 95 80 L 100 120 L 105 80 L 110 120 L 115 80 L 120 120 L 125 80 L 130 120 L 135 80 L 140 120 L 145 80 L 150 120 L 155 80 L 160 120 L 165 80 L 170 120 L 175 80 L 180 120 L 185 80 L 190 120 L 195 80 L 200 120 L 205 80 L 210 120 L 215 80 L 220 120 L 225 80 L 230 120 L 235 80 L 240 120 L 245 80 L 250 120 L 255 80 L 260 120 L 265 80 L 270 120 L 275 80 L 280 120 L 285 80 L 290 120 L 295 80 L 300 120 L 305 80 L 310 120 L 315 80 L 320 120 L 325 80 L 330 120 L 335 80 L 340 120 L 345 80 L 350 120 L 355 80 L 360 120 L 365 80 L 370 120 L 375 80 L 380 120 L 385 80 L 390 120 L 395 80 L 400 100"
+            fill="none"
+            stroke="#809076"
+            stroke-width="1.5"
+            class="wave-line"
+            opacity="0.8"
+          />
+
+          <!-- Beta Waves (13-30 Hz) - High frequency, low amplitude -->
+          <path
+            d="M 20 100 L 22 90 L 24 110 L 26 90 L 28 110 L 30 90 L 32 110 L 34 90 L 36 110 L 38 90 L 40 110 L 42 90 L 44 110 L 46 90 L 48 110 L 50 90 L 52 110 L 54 90 L 56 110 L 58 90 L 60 110 L 62 90 L 64 110 L 66 90 L 68 110 L 70 90 L 72 110 L 74 90 L 76 110 L 78 90 L 80 110 L 82 90 L 84 110 L 86 90 L 88 110 L 90 90 L 92 110 L 94 90 L 96 110 L 98 90 L 100 110 L 102 90 L 104 110 L 106 90 L 108 110 L 110 90 L 112 110 L 114 90 L 116 110 L 118 90 L 120 110 L 122 90 L 124 110 L 126 90 L 128 110 L 130 90 L 132 110 L 134 90 L 136 110 L 138 90 L 140 110 L 142 90 L 144 110 L 146 90 L 148 110 L 150 90 L 152 110 L 154 90 L 156 110 L 158 90 L 160 110 L 162 90 L 164 110 L 166 90 L 168 110 L 170 90 L 172 110 L 174 90 L 176 110 L 178 90 L 180 110 L 182 90 L 184 110 L 186 90 L 188 110 L 190 90 L 192 110 L 194 90 L 196 110 L 198 90 L 200 110 L 202 90 L 204 110 L 206 90 L 208 110 L 210 90 L 212 110 L 214 90 L 216 110 L 218 90 L 220 110 L 222 90 L 224 110 L 226 90 L 228 110 L 230 90 L 232 110 L 234 90 L 236 110 L 238 90 L 240 110 L 242 90 L 244 110 L 246 90 L 248 110 L 250 90 L 252 110 L 254 90 L 256 110 L 258 90 L 260 110 L 262 90 L 264 110 L 266 90 L 268 110 L 270 90 L 272 110 L 274 90 L 276 110 L 278 90 L 280 110 L 282 90 L 284 110 L 286 90 L 288 110 L 290 90 L 292 110 L 294 90 L 296 110 L 298 90 L 300 110 L 302 90 L 304 110 L 306 90 L 308 110 L 310 90 L 312 110 L 314 90 L 316 110 L 318 90 L 320 110 L 322 90 L 324 110 L 326 90 L 328 110 L 330 90 L 332 110 L 334 90 L 336 110 L 338 90 L 340 110 L 342 90 L 344 110 L 346 90 L 348 110 L 350 90 L 352 110 L 354 90 L 356 110 L 358 90 L 360 110 L 362 90 L 364 110 L 366 90 L 368 110 L 370 90 L 372 110 L 374 90 L 376 110 L 378 90 L 380 110 L 382 90 L 384 110 L 386 90 L 388 110 L 390 90 L 392 110 L 394 90 L 396 110 L 398 90 L 400 100"
+            fill="none"
+            stroke="#64747d"
+            stroke-width="1"
+            class="wave-line"
+            opacity="0.6"
+          />
+
+          <!-- Gamma Waves (30-100 Hz) - Very high frequency, very low amplitude -->
+          <path
+            d="M 20 100 L 21 95 L 22 105 L 23 95 L 24 105 L 25 95 L 26 105 L 27 95 L 28 105 L 29 95 L 30 105 L 31 95 L 32 105 L 33 95 L 34 105 L 35 95 L 36 105 L 37 95 L 38 105 L 39 95 L 40 105 L 41 95 L 42 105 L 43 95 L 44 105 L 45 95 L 46 105 L 47 95 L 48 105 L 49 95 L 50 105 L 51 95 L 52 105 L 53 95 L 54 105 L 55 95 L 56 105 L 57 95 L 58 105 L 59 95 L 60 105 L 61 95 L 62 105 L 63 95 L 64 105 L 65 95 L 66 105 L 67 95 L 68 105 L 69 95 L 70 105 L 71 95 L 72 105 L 73 95 L 74 105 L 75 95 L 76 105 L 77 95 L 78 105 L 79 95 L 80 105 L 81 95 L 82 105 L 83 95 L 84 105 L 85 95 L 86 105 L 87 95 L 88 105 L 89 95 L 90 105 L 91 95 L 92 105 L 93 95 L 94 105 L 95 95 L 96 105 L 97 95 L 98 105 L 99 95 L 100 105 L 101 95 L 102 105 L 103 95 L 104 105 L 105 95 L 106 105 L 107 95 L 108 105 L 109 95 L 110 105 L 111 95 L 112 105 L 113 95 L 114 105 L 115 95 L 116 105 L 117 95 L 118 105 L 119 95 L 120 105 L 121 95 L 122 105 L 123 95 L 124 105 L 125 95 L 126 105 L 127 95 L 128 105 L 129 95 L 130 105 L 131 95 L 132 105 L 133 95 L 134 105 L 135 95 L 136 105 L 137 95 L 138 105 L 139 95 L 140 105 L 141 95 L 142 105 L 143 95 L 144 105 L 145 95 L 146 105 L 147 95 L 148 105 L 149 95 L 150 105 L 151 95 L 152 105 L 153 95 L 154 105 L 155 95 L 156 105 L 157 95 L 158 105 L 159 95 L 160 105 L 161 95 L 162 105 L 163 95 L 164 105 L 165 95 L 166 105 L 167 95 L 168 105 L 169 95 L 170 105 L 171 95 L 172 105 L 173 95 L 174 105 L 175 95 L 176 105 L 177 95 L 178 105 L 179 95 L 180 105 L 181 95 L 182 105 L 183 95 L 184 105 L 185 95 L 186 105 L 187 95 L 188 105 L 189 95 L 190 105 L 191 95 L 192 105 L 193 95 L 194 105 L 195 95 L 196 105 L 197 95 L 198 105 L 199 95 L 200 105 L 201 95 L 202 105 L 203 95 L 204 105 L 205 95 L 206 105 L 207 95 L 208 105 L 209 95 L 210 105 L 211 95 L 212 105 L 213 95 L 214 105 L 215 95 L 216 105 L 217 95 L 218 105 L 219 95 L 220 105 L 221 95 L 222 105 L 223 95 L 224 105 L 225 95 L 226 105 L 227 95 L 228 105 L 229 95 L 230 105 L 231 95 L 232 105 L 233 95 L 234 105 L 235 95 L 236 105 L 237 95 L 238 105 L 239 95 L 240 105 L 241 95 L 242 105 L 243 95 L 244 105 L 245 95 L 246 105 L 247 95 L 248 105 L 249 95 L 250 105 L 251 95 L 252 105 L 253 95 L 254 105 L 255 95 L 256 105 L 257 95 L 258 105 L 259 95 L 260 105 L 261 95 L 262 105 L 263 95 L 264 105 L 265 95 L 266 105 L 267 95 L 268 105 L 269 95 L 270 105 L 271 95 L 272 105 L 273 95 L 274 105 L 275 95 L 276 105 L 277 95 L 278 105 L 279 95 L 280 105 L 281 95 L 282 105 L 283 95 L 284 105 L 285 95 L 286 105 L 287 95 L 288 105 L 289 95 L 290 105 L 291 95 L 292 105 L 293 95 L 294 105 L 295 95 L 296 105 L 297 95 L 298 105 L 299 95 L 300 105 L 301 95 L 302 105 L 303 95 L 304 105 L 305 95 L 306 105 L 307 95 L 308 105 L 309 95 L 310 105 L 311 95 L 312 105 L 313 95 L 314 105 L 315 95 L 316 105 L 317 95 L 318 105 L 319 95 L 320 105 L 321 95 L 322 105 L 323 95 L 324 105 L 325 95 L 326 105 L 327 95 L 328 105 L 329 95 L 330 105 L 331 95 L 332 105 L 333 95 L 334 105 L 335 95 L 336 105 L 337 95 L 338 105 L 339 95 L 340 105 L 341 95 L 342 105 L 343 95 L 344 105 L 345 95 L 346 105 L 347 95 L 348 105 L 349 95 L 350 105 L 351 95 L 352 105 L 353 95 L 354 105 L 355 95 L 356 105 L 357 95 L 358 105 L 359 95 L 360 105 L 361 95 L 362 105 L 363 95 L 364 105 L 365 95 L 366 105 L 367 95 L 368 105 L 369 95 L 370 105 L 371 95 L 372 105 L 373 95 L 374 105 L 375 95 L 376 105 L 377 95 L 378 105 L 379 95 L 380 105 L 381 95 L 382 105 L 383 95 L 384 105 L 385 95 L 386 105 L 387 95 L 388 105 L 389 95 L 390 105 L 391 95 L 392 105 L 393 95 L 394 105 L 395 95 L 396 105 L 397 95 L 398 105 L 399 95 L 400 100"
+            fill="none"
+            stroke="#333333"
+            stroke-width="0.8"
+            class="wave-line"
+            opacity="0.5"
+          />
+        </svg>
+
+        <!-- Wave Legend -->
+        <div class="wave-legend">
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #574535"
+            ></div>
+            <span>Delta (0.5-4 Hz)</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #dbd4c2"
+            ></div>
+            <span>Theta (4-8 Hz)</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #809076"
+            ></div>
+            <span>Alpha (8-13 Hz)</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #64747d"
+            ></div>
+            <span>Beta (13-30 Hz)</span>
+          </div>
+          <div class="legend-item">
+            <div
+              class="legend-color"
+              style="background-color: #333333"
+            ></div>
+            <span>Gamma (30-100 Hz)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Status -->
+    <div class="status-section">
+      <div class="section-title">System Status</div>
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-label">Connection</div>
+          <div class="status-value active">Active</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Battery</div>
+          <div class="status-value">87%</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Signal</div>
+          <div class="status-value strong">Strong</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Last Sync</div>
+          <div class="status-value">2m ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

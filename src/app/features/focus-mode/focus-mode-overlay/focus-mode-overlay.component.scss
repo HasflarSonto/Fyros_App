@@ -36,10 +36,12 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  margin-top: -30px; /* Move everything up by 30px */
+  margin-top: 0px; /* Reset to 0px, content will be moved down via padding-top */
   margin-bottom: max(env(safe-area-inset-bottom, 0px), 60px);
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) + 20px
+  ); /* Move content down by 20px total (was 50px, now 20px) */
 }
 
 .scroll-container {
@@ -50,7 +52,7 @@ main {
 
 .close-btn {
   position: absolute;
-  top: max(env(safe-area-inset-top, 0px), 90px); /* Move down by 30px from 60px */
+  top: max(env(safe-area-inset-top, 0px), 60px); /* REVERTED to original position */
   right: var(--s);
   width: 56px;
   height: 56px;
@@ -92,8 +94,8 @@ main {
   margin-bottom: auto;
   margin-top: max(
     env(safe-area-inset-top, 0px),
-    130px
-  ); /* Move down by 30px from 100px */
+    150px
+  ); /* Move down by 20px total (was 180px, now 150px) to maintain consistency */
 }
 
 focus-mode-task-selection,

@@ -6,6 +6,7 @@
   height: 100%;
   text-align: center;
   gap: 2rem;
+  padding-top: 50px; /* Move content down by 50px */
 }
 
 .timer-container {
@@ -13,41 +14,68 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-10px); // Move up by 10px
+  transform: translateY(-50px); // Move up by 50px total (was -40px, now -50px)
 
-  .time-overlay {
+  .focus-status-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
     color: white;
-    font-size: 2.2rem;
-    font-weight: 600;
-    font-family: 'Roboto Mono', monospace;
     z-index: 10;
     pointer-events: none;
+
+    .focus-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 35px; /* Increased from 25px to 35px */
+      opacity: 0.9;
+    }
+
+    .focus-value {
+      font-size: 3.2rem; /* Increased from 2.5rem to 3.2rem */
+      font-weight: 700;
+      margin-bottom: 30px; /* Increased from 20px to 30px */
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    .focus-message {
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.8;
+      font-style: italic;
+    }
   }
 }
 
-.task-tracking-info {
-  transform: translateY(-10px); // Move up by 10px
+.time-display {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  font-family: 'Roboto Mono', monospace;
+  margin: 0; /* Eliminated margins completely */
+  transform: translateY(-50px); // Move up by 50px total (was -40px, now -50px)
+  color: var(
+    --text-color
+  ); /* Responsive to theme - black in light mode, white in dark mode */
 }
 
 .break-message {
   font-size: 1.1rem;
   opacity: 0.8;
   margin: 0;
-  transform: translateY(-10px); // Move up by 10px
+  transform: translateY(-40px); // Move up by 40px total (was -30px, now -40px)
 }
 
 .button-row {
   display: flex;
   gap: 1rem;
   align-items: center;
-  transform: translateY(-10px); // Move up by 10px
+  transform: translateY(-40px); // Move up by 40px total (was -30px, now -40px)
 }
 
 // Move the skip button up as well
 button[mat-stroked-button] {
-  transform: translateY(-10px); // Move up by 10px
+  transform: translateY(-40px); // Move up by 40px total (was -30px, now -40px)
 }

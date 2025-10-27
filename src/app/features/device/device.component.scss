@@ -185,3 +185,42 @@
   font-weight: 500;
   color: var(--text-color);
 }
+
+// Advanced Mode Button
+.advanced-mode-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.advanced-mode-button {
+  width: 100%;
+  max-width: 200px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  background-color: var(--c-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Roboto Mono', monospace;
+
+  &:hover {
+    background-color: var(--palette-primary-600);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Removed mat-icon styling since we're using emoji
+}
